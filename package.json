@@ -9,7 +9,7 @@
     "build:client": "cd client && npm run build && rm -rf ../server/public/ && cp -r build/ ../server/public",
     "build:server": "cd server && npm run build",
     "build": "npm run build:client && npm run build:server",
-    "serve": "cd server && npm run serve"
+    "start": "cd server && npm run start"
   },
   "repository": {
     "type": "git",

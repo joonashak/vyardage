@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src -d dist",
-    "serve": "node dist/app.js"
+    "start": "node dist/app.js"
   },
   "author": "Joonas Häkkinen",
   "license": "MIT",
