@@ -2,6 +2,10 @@
 
 Vyardage is a virtual golf yardage book. It is designed for use with the [World Golf Tour](https://www.wgt.com/) game. As you play the game, you enter your shot parameters and the results to Vyardage which then learns how different conditions affect the ball flight and helps you pick the best shot for a given situation.
 
+## Docs
+
+- [Tuntikirjanpito](docs/Tuntikirjanpito.md) (hour tracking, in Finnish)
+
 ## Usage
 
 ### Production Configuration
