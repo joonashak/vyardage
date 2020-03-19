@@ -1,0 +1,25 @@
+{
+  "name": "vyardage",
+  "version": "0.1.0",
+  "description": "Virtual yardage book to improve your scores in the World Golf Tour game.",
+  "scripts": {
+    "build:client": "cd client && npm run build && rm -rf ../server/public/ && cp -r build/ ../server/public",
+    "serve": "cd server && npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joonashak/vyardage.git"
+  },
+  "keywords": [
+    "vyardage",
+    "golf",
+    "yardage",
+    "gaming"
+  ],
+  "author": "Joonas Häkkinen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joonashak/vyardage/issues"
+  },
+  "homepage": "https://github.com/joonashak/vyardage#readme"
+}

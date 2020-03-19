@@ -1,0 +1,26 @@
+{
+  "name": "vyardage-server",
+  "version": "0.1.0",
+  "description": "Backend for Vyardage. See parent project for more info.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel src -d dist",
+    "serve": "node dist/app.js"
+  },
+  "author": "Joonas Häkkinen",
+  "license": "MIT",
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/register": "^7.8.6"
+  }
+}
