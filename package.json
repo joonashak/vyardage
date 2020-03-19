@@ -5,11 +5,13 @@
   "scripts": {
     "install:client": "cd client && npm ci",
     "install:server": "cd server && npm ci",
+    "install:e2e": "cd e2e && npm ci",
     "postinstall": "npm run install:client && npm run install:server",
     "build:client": "cd client && npm run build && rm -rf ../server/public/ && cp -r build/ ../server/public",
     "build:server": "cd server && npm run build",
     "build": "npm run build:client && npm run build:server",
-    "start": "cd server && npm run start"
+    "start": "cd server && npm run start",
+    "test": "cd e2e && npm run test"
   },
   "repository": {
     "type": "git",

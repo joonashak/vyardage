@@ -2,3 +2,5 @@ node_modules
 /client/build
 /server/public
 /server/dist
+/e2e/cypress/screenshots
+/e2e/cypress/videos
