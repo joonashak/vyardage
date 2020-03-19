@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run: npm run install:e2e
       - run: docker-compose up -d
-      - run: timeout 5m bash -c 'until $(curl --output /dev/null --silent --fail http://localhost:8000); do printf .; sleep 5; done'
+      - run: timeout 5m bash -c 'until $(curl --output /dev/null --silent --fail http://localhost:3001); do printf .; sleep 5; done'
       - run: npm run test
 
 workflows:
