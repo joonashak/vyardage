@@ -4,6 +4,8 @@
   "description": "Virtual yardage book to improve your scores in the World Golf Tour game.",
   "scripts": {
     "build:client": "cd client && npm run build && rm -rf ../server/public/ && cp -r build/ ../server/public",
+    "build:server": "cd server && npm run build",
+    "build": "npm run build:client && npm run build:server",
     "serve": "cd server && npm run serve"
   },
   "repository": {
