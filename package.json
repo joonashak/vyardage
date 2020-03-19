@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/joonashak/vyardage/issues"
   },
-  "homepage": "https://github.com/joonashak/vyardage#readme"
+  "homepage": "https://github.com/joonashak/vyardage#readme",
+  "engines": {
+    "node": "12.16.x"
+  }
 }
