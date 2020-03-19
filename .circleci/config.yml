@@ -3,6 +3,11 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@1.0.1
 
+executors:
+  test-exec:
+    machine:
+      image: ubuntu-1604:201903-01
+
 jobs:
   run-tests:
     executor: test-exec
