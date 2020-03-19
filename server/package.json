@@ -4,7 +4,7 @@
   "description": "Backend for Vyardage. See parent project for more info.",
   "main": "app.js",
   "scripts": {
-    "build": "npx babel src -d dist",
+    "build": "./node_modules/.bin/babel src -d dist",
     "serve": "node dist/app.js"
   },
   "author": "Joonas Häkkinen",
