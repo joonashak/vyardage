@@ -26,9 +26,6 @@ COPY server server/
 WORKDIR /usr/src/app/server
 RUN npm run build
 
-# Prepare e2e test package.
-#RUN npm run install:e2e
-
 EXPOSE $port
 
 CMD npm start

@@ -11,3 +11,11 @@ This app is designed to be run on Heroku. Since Heroku does not install developm
 ```bash
 NPM_CONFIG_PRODUCTION=false
 ```
+
+### Testing
+
+Tests are automatically run by CI on deploy. Use Docker to run tests locally:
+
+```bash
+docker-compose run tests
+```
