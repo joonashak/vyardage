@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src -d dist",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "start:dev": "nodemon --exec babel-node src/app.js"
   },
   "author": "Joonas Häkkinen",
   "license": "MIT",
@@ -24,7 +25,8 @@
     "@babel/plugin-proposal-throw-expressions": "^7.8.3",
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
-    "@babel/register": "^7.8.6"
+    "@babel/register": "^7.8.6",
+    "nodemon": "^2.0.2"
   },
   "engines": {
     "node": "12.16.x"

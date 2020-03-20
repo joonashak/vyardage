@@ -16,6 +16,23 @@ Branch|CI Status
 
 ## Usage
 
+### Development
+
+The development environment is composed of the server and the database running in Docker containers and the frontend being served by React's development server. While slightly inconvenient, I find this setup reducing a lot of somewhat hacky configuration.
+
+First start the backend:
+
+```bash
+npm run dev
+```
+
+Followed with the frontend:
+
+```bash
+cd client
+npm start
+```
+
 ### Testing
 
 Tests are automatically run by CI on deploy.

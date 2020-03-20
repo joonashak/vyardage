@@ -19,4 +19,7 @@ const app = express();
 app.use(express.static('public'));
 app.get('*', (req, res) => res.sendFile(path.resolve('public', 'index.html')));
 
-app.listen(config.port);
+app.listen(config.port,
+  () => console.log(`Vyardage server running in ${process.env.NODE_ENV} mode at port ${config.port}.`));
+
+

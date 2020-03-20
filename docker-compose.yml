@@ -9,8 +9,11 @@ services:
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
-    depends_on:
-      - db
+    #depends_on:
+    #  - db
+    volumes:
+      - ./server:/usr/src/app/server
+    command: npm run start:dev
 
   test-app:
     build: .
