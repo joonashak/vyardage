@@ -5,4 +5,5 @@
 Pvm|Tunnit|Mitä tein
 -|-|-
 19.3.|6|Projektin rungon tekeminen, Herokun, CI:n ja Dockerin konfigurointi.
-**YHT.**|6|
+20.3.|3|Integraatiotestien konfigurointi.
+**YHT.**|9|
