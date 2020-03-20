@@ -4,3 +4,4 @@ node_modules
 /server/dist
 /e2e/cypress/screenshots
 /e2e/cypress/videos
+/pg_data

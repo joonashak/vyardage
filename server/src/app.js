@@ -1,6 +1,18 @@
 import express from 'express';
+import Knex from 'knex';
 import config from './utils/config';
 
+
+// Connect to database.
+export const knex = Knex({
+  client: 'pg',
+  connection: config.databaseUrl,
+  debug: process.env.NODE_ENV === 'development',
+});
+
+// FIXME: remove this later on
+// Test connection
+knex.raw('select 1').then(() => console.log('db working')).catch(() => throw new Error('failed db connection'));
 
 const app = express();
 

@@ -12,6 +12,8 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "express": "^4.17.1",
+    "knex": "^0.20.12",
+    "pg": "^7.18.2",
     "rc": "^1.2.8"
   },
   "devDependencies": {
@@ -19,6 +21,7 @@
     "@babel/core": "^7.8.7",
     "@babel/node": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-throw-expressions": "^7.8.3",
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "@babel/register": "^7.8.6"
