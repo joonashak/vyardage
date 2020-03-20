@@ -7,9 +7,21 @@ services:
       - 3001:3001
     container_name: vyardage-app
     environment:
+      - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
     depends_on:
       - db
+
+  test-app:
+    build: .
+    ports:
+      - 3001:3001
+    container_name: test-app
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URL=postgresql://postgres:postgres@test-db:5432/postgres
+    depends_on:
+      - test-db
 
   db:
     image: postgres:12.2
@@ -22,12 +34,20 @@ services:
     ports:
       - 5432:5432
 
+  test-db:
+    image: postgres:12.2
+    container_name: test-db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+
   tests:
     build: ./e2e/
     container_name: vyardage-test
     environment:
-      - CYPRESS_BASE_URL=http://app:3001
+      - CYPRESS_BASE_URL=http://test-app:3001
     depends_on:
-      - app
+      - test-app
     volumes:
       - ./e2e/cypress:/e2e/cypress
