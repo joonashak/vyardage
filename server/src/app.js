@@ -1,5 +1,6 @@
 import express from 'express';
 import Knex from 'knex';
+import path from 'path';
 import config from './utils/config';
 
 
@@ -21,5 +22,3 @@ app.get('*', (req, res) => res.sendFile(path.resolve('public', 'index.html')));
 
 app.listen(config.port,
   () => console.log(`Vyardage server running in ${process.env.NODE_ENV} mode at port ${config.port}.`));
-
-
