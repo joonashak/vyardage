@@ -34,10 +34,10 @@ workflows:
           requires:
             - run-tests
       - heroku/deploy-via-git:
-        maintenance-mode: true
-        app-name: $HEROKU_APP_NAME_STAGING
-        filters:
-          branches:
-            only: trunk
-        requires:
-          - run-tests
+          maintenance-mode: true
+          app-name: $HEROKU_APP_NAME_STAGING
+          filters:
+            branches:
+              only: trunk
+          requires:
+            - run-tests
