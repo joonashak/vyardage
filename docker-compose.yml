@@ -54,3 +54,9 @@ services:
       - test-app
     volumes:
       - ./e2e/cypress:/e2e/cypress
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 3002:8080
