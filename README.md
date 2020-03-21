@@ -9,6 +9,7 @@ This app is currently under initial development.
 Branch|CI Status
 -|-
 `master`|[![CircleCI](https://circleci.com/gh/joonashak/vyardage/tree/master.svg?style=svg)](https://app.circleci.com/pipelines/github/joonashak/vyardage?branch=master)
+`trunk`|[![CircleCI](https://circleci.com/gh/joonashak/vyardage/tree/trunk.svg?style=svg)](https://app.circleci.com/pipelines/github/joonashak/vyardage?branch=trunk)
 
 ## Docs
 
