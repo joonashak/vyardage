@@ -1,0 +1,11 @@
+Project vyardage {
+  database_type: 'PostgreSQL'
+}
+
+Table User {
+  id UUID
+  username TEXT
+  isAdmin BOOLEAN
+  passwordHash TEXT
+  createdAt TIMESTAMPZ
+}
