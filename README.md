@@ -13,6 +13,7 @@ Branch|CI Status
 
 ## Docs
 
+- [Database](docs/Database.md)
 - [Tuntikirjanpito](docs/Tuntikirjanpito.md) (hour tracking, in Finnish)
 
 ## Usage
