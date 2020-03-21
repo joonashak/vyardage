@@ -5,6 +5,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import promiseRouter from 'express-promise-router';
+import { Model } from 'objection';
 import config from './utils/config';
 
 
@@ -14,6 +15,8 @@ const knex = Knex({
   connection: config.databaseUrl,
   debug: process.env.NODE_ENV === 'development',
 });
+
+Model.knex(knex);
 
 const app = express();
 
