@@ -1,10 +1,5 @@
-const connection = process.env.DATABASE_URL;
-connection.concat(process.env.NODE_ENV === 'production' ? '?ssl=open' : '');
-console.log(process.env.NODE_ENV);
-console.log('connection string:', connection);
-
 module.exports = {
   client: 'pg',
-  connection,
+  connection: process.env.NODE_ENV === 'production' ? `${process.env.DATABASE_URL}?ssl=true` : process.env.DATABASE_URL,
   debug: process.env.NODE_ENV !== 'production',
 };
