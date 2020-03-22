@@ -10,11 +10,7 @@ import config from './utils/config';
 
 
 // Connect to database.
-const knex = Knex({
-  client: 'pg',
-  connection: config.databaseUrl,
-  debug: process.env.NODE_ENV === 'development',
-});
+const knex = Knex();
 
 Model.knex(knex);
 
