@@ -35,6 +35,12 @@ cd client
 npm start
 ```
 
+To run migrations, make sure the backend is down (use `docker-compose down` if necessary) and then command:
+
+```bash
+npm run dev:migrate
+```
+
 ### Testing
 
 Tests are automatically run by CI on deploy.

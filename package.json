@@ -10,11 +10,14 @@
     "build:client": "cd client && npm run build && rm -rf ../server/public/ && cp -r build/ ../server/public",
     "build:server": "cd server && npm run build",
     "build": "npm run build:client && npm run build:server",
+    "heroku-postbuild": "npm run migrate",
     "start": "cd server && npm run start",
     "start:dev": "cd server && npm run start:dev",
     "test:ci": "cd e2e && npm run test",
     "test": "docker-compose build test-app && docker-compose run tests; docker-compose down",
-    "dev": "docker-compose up db adminer app; exit 0"
+    "dev": "docker-compose up db adminer app; exit 0",
+    "dev:migrate": "docker-compose up -d db && docker-compose run app npm run migrate; docker-compose down",
+    "migrate": "cd server && npm run migrate"
   },
   "repository": {
     "type": "git",
