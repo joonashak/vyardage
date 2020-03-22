@@ -7,10 +7,11 @@ import bodyParser from 'body-parser';
 import promiseRouter from 'express-promise-router';
 import { Model } from 'objection';
 import config from './utils/config';
+import knexConfig from '../knexfile';
 
 
 // Connect to database.
-const knex = Knex();
+const knex = Knex(knexConfig);
 
 Model.knex(knex);
 
