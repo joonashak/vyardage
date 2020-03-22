@@ -10,7 +10,7 @@
     "build:client": "cd client && npm run build && rm -rf ../server/public/ && cp -r build/ ../server/public",
     "build:server": "cd server && npm run build",
     "build": "npm run build:client && npm run build:server",
-    "heroku-postbuild": "npm run migrate",
+    "heroku-postbuild": "npm run build && npm run migrate",
     "start": "cd server && npm run start",
     "start:dev": "cd server && npm run start:dev",
     "test:ci": "cd e2e && npm run test",
