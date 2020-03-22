@@ -7,7 +7,7 @@
     "build": "./node_modules/.bin/babel src -d dist",
     "start": "node dist/app.js",
     "start:dev": "nodemon --exec babel-node src/app.js",
-    "migrate": "npx knex migrate:latest"
+    "migrate": "npx babel-node node_modules/.bin/knex migrate:latest"
   },
   "author": "Joonas Häkkinen",
   "license": "MIT",
