@@ -3,9 +3,66 @@ Project vyardage {
 }
 
 Table User {
-  id UUID
-  username TEXT
-  isAdmin BOOLEAN
-  passwordHash TEXT
-  createdAt TIMESTAMPZ
+  id UUID [pk]
+  username TEXT [not null]
+  isAdmin BOOLEAN [not null, default: false]
+  passwordHash TEXT [not null]
+  createdAt TIMESTAMPZ [not null]
+}
+
+Table Shot {
+  id UUID [pk]
+  userId UUID [ref: > User.id, not null]
+  clubId UUID [ref: > Club.id, not null]
+  ballId UUID [ref: > Ball.id, not null]
+  lieType LIE_TYPE [not null]
+  liePct FLOAT [not null, default: 0, note: "Lie percentage (how deep the ball is buried, 0-1)"]
+  windDir INT [not null, note: "Wind direction (0-360)"]
+  windSpeed INT [not null, note: "Wind speed (mph)"]
+  elevation INT [not null, note: "Elevation between starting and landing points (ft)."]
+  spin FLOAT [not null, default: 0, note: "Spin % setting (-1 through 1, negative values denote backspin)"]
+  power FLOAT [not null, default: 1, note: "Power % (0-1)"]
+  actCarry INT [not null, note: "Actual carry length (yds)"]
+  predCarry INT [note: "Predicted carry length (yds), used to measure prediction accuracy"]
+  
+  Note: "Shot parameters, results and predictions."
+}
+
+Table Club {
+  id UUID [pk]
+  clubType CLUB_TYPE [not null]
+  name TEXT [not null, note: "Club marketing name (including level)"]
+}
+
+Table Ball {
+  id UUID [pk]
+  name TEXT [not null, note: "Ball marketing name (including level)"]
+  distance FLOAT [not null, note: "Distance attribute"]
+  spin FLOAT [not null, note: "Spin attribute"]
+}
+
+enum LIE_TYPE {
+  Fairway
+  Rough
+  Sand
+  // Other lie types are encountered so rarely that gathering enough data points
+  // about them would be too much work and yield very little advantage. Therefore
+  // only these three lies are handled by Vyardage.
+}
+
+enum CLUB_TYPE {
+  Driver
+  "3-wood"
+  Hybrid
+  "3-iron"
+  "4-iron"
+  "5-iron"
+  "6-iron"
+  "7-iron"
+  "8-iron"
+  "9-iron"
+  "Pitching wedge"
+  "Gap wedge"
+  "Sand wedge"
+  "Lob wedge"
 }

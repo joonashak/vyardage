@@ -13,6 +13,7 @@ Branch|CI Status
 
 ## Docs
 
+- [Problem Description and Discussion](docs/Problem.md)
 - [Database](docs/Database.md)
 - [Tuntikirjanpito](docs/Tuntikirjanpito.md) (hour tracking, in Finnish)
 

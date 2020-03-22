@@ -21,6 +21,8 @@ Don't forget to clean up the database container with `docker-compose down` once 
 
 ## Database Diagram
 
-![Database Diagram](./assets/database.png)
+[![Database Diagram](./assets/database.png)](https://dbdiagram.io/d/5e7669ad4495b02c3b889266)
+
+*[(Click to see the interactive version with notes, etc.)](https://dbdiagram.io/d/5e7669ad4495b02c3b889266)*
 
 The source for the diagram is available [here](./assets/database.dbml).
