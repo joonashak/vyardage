@@ -6,13 +6,17 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import promiseRouter from 'express-promise-router';
 import { Model } from 'objection';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import knexSession from 'connect-session-knex';
 import config from './utils/config';
 import knexConfig from '../knexfile';
+import errorHandler from './utils/errorHandling';
+import apiController from './api';
 
 
 // Connect to database.
 const knex = Knex(knexConfig);
-
 Model.knex(knex);
 
 const app = express();
@@ -27,9 +31,21 @@ const logFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev';
 const router = promiseRouter();
 
 app
-  .use(bodyParser.json())
   .use(morgan(logFormat))
-  .use(router);
+  .use(session({
+    store: new (knexSession(session))({ knex }),
+    secret: config.sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { httpOnly: true },
+  }))
+  .use(bodyParser.json())
+  .use(cookieParser())
+  .use(router)
+  .use(errorHandler);
+
+// Register controllers providing API endpoints
+apiController(router);
 
 // Serve static frontend.
 app.use(express.static('public'));

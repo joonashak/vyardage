@@ -4,6 +4,8 @@ import rc from 'rc';
 const defaultConfig = {
   port: process.env.PORT || 3001,
   databaseUrl: process.env.DATABASE_URL,
+  loginDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+  sessionSecret: process.env.SESSION_SECRET,
 };
 
 export default rc('vyardage', defaultConfig);

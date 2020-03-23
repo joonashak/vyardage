@@ -8,4 +8,5 @@ Pvm|Tunnit|Mitä tein
 20.3.|4|Integraatiotestien ja kehitysympäristön konfigurointi.
 21.3.|3|Tietokannan konfigurointi ja suunnittelu.
 22.3.|6|Production-konfiguraation debuggaaminen, tietokannan suunnittelu ja dokumentaation kirjoittaminen.
-**YHT.**|19|
+23.3.|4|Autentikoinnin toteuttaminen.
+**YHT.**|23|

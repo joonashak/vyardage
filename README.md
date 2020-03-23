@@ -69,3 +69,4 @@ Other environment variables that are necessary for running in production are out
 Name|Definition
 -|-
 DATABASE_URL|Postgres connection string for database connection.
+SESSION_SECRET|Salt for hashing passwords.
