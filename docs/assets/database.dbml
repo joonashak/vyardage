@@ -4,7 +4,7 @@ Project vyardage {
 
 Table User {
   id UUID [pk]
-  username TEXT [not null]
+  username TEXT [not null, unique]
   isAdmin BOOLEAN [not null, default: false]
   passwordHash TEXT [not null]
   createdAt TIMESTAMPZ [not null]
