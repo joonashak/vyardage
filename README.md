@@ -17,6 +17,8 @@ Branch|CI Status
 - [Database](docs/Database.md)
 - [Tuntikirjanpito](docs/Tuntikirjanpito.md) (hour tracking, in Finnish)
 
+API reference is provided in the `reference/` folder in OpenAPI 3 format. Use your tool of choice to view the file, I use [Stoplight](https://stoplight.io/).
+
 ## Usage
 
 ### Development

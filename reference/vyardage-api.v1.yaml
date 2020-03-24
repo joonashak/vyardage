@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  title: vyardage-api
+  version: '1.0'
+  description: "Reference for using and developing Vyardage's data API."
+  contact:
+    name: Joonas Häkkinen
+  license:
+    name: MIT
+servers:
+  - url: 'http://localhost:3001'
+paths:
+  /api/v1/login:
+    post:
+      summary: Login
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: OK
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: Three cookies for session persistence. See description for more information.
+              required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - type
+                  - message
+              examples:
+                Empty username:
+                  value:
+                    type: LoginError
+                    message: Empty username is not allowed.
+                Empty password:
+                  value:
+                    type: LoginError
+                    message: Empty password is not allowed.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - type
+                  - message
+              examples:
+                Wrong username:
+                  value:
+                    type: LoginError
+                    message: Incorrect username.
+                Wrong password:
+                  value:
+                    type: LoginError
+                    message: Incorrect password.
+      operationId: post-api-v1-login
+      description: |-
+        Attempt to authenticate with the `username` and `password` in request body.
+
+        Successful login response includes three cookies:
+
+        - `connect.sid` contains the session ID to be used in authorization headers and is `HttpOnly`.
+        - `_csrf` and `XSRF-Token` for protection against cross-site request forgery (CSRF).
+
+        If this endpoint is called with valid credentials for an existing session, nothing is done. This means that if the client is trying to get a new session or CSRF tokens, they need to either not send the respective cookies and headers or call the `/api/v1/logout` endpoint first.
+
+        See examples for error handling in various cases.
+
+        ### Session Persistence
+
+        The client can persist their session by setting `remember = 1` in the request payload and honoring the `Set-Cookie` headers sent in the response.
+
+        ### CSRF Protection
+
+        In addition to the cookies, all endpoints requiring authentication must be called with the `XSRF-Token` header set to the value of the `XSRF-Token` cookie to protect against CSRF. While this is not strictly necessary for a JSON API not accepting CORS, it is deemed a good practice to guard against future bad design decisions and the remote possibility of an attacker being able to read the results of the forged request. CSRF protection is enabled for all HTTP verbs when accessing endpoints requiring authentication.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+                remember:
+                  type: string
+                  description: 'For the value "1", the session cookie will have 30 days maxAge, otherwise none will be set.'
+                  enum:
+                    - '0'
+                    - '1'
+              required:
+                - username
+                - password
+                - remember
+  /api/v1/logout:
+    get:
+      summary: Logout
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+      operationId: get-api-v1-logout
+      description: Notify the application that the logged-in user is done with their session. The client should remove existing cookies as they will not be valid for authorization after completing this request. This endpoint always responds with `200 OK`.
+components:
+  schemas: {}

@@ -9,4 +9,5 @@ Pvm|Tunnit|Mitä tein
 21.3.|3|Tietokannan konfigurointi ja suunnittelu.
 22.3.|6|Production-konfiguraation debuggaaminen, tietokannan suunnittelu ja dokumentaation kirjoittaminen.
 23.3.|4|Autentikoinnin toteuttaminen.
-**YHT.**|23|
+24.3.|1|Dokumentaation kirjoittaminen.
+**YHT.**|24|
