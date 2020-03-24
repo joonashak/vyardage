@@ -139,5 +139,50 @@ paths:
                   - message
       operationId: get-api-v1-logout
       description: Notify the application that the logged-in user is done with their session. The client should remove existing cookies as they will not be valid for authorization after completing this request. This endpoint always responds with `200 OK`.
+  /api/v1/initialUser:
+    post:
+      summary: Create Initial User
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  username:
+                    type: string
+                  isAdmin:
+                    type: boolean
+                  createdAt:
+                    type: string
+                required:
+                  - id
+                  - username
+                  - isAdmin
+                  - createdAt
+              examples:
+                Example:
+                  value:
+                    id: 9072a5af-20fc-4fad-a7ea-57dce7910ca4
+                    username: admin
+                    isAdmin: true
+                    createdAt: '2020-03-24T13:42:21.634Z'
+      operationId: post-api-v1-initialUser
+      description: Create initial user to initialize the user database. Requests to this endpoint will fail if the `User` table contains rows. The created user will have admin privileges.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
 components:
   schemas: {}

@@ -20,3 +20,9 @@ export class ConfigError extends CustomError {
     super('ConfigError', 500, message);
   }
 }
+
+export class ForbiddenError extends CustomError {
+  constructor(message) {
+    super('ForbiddenError', 403, message);
+  }
+}

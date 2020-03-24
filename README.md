@@ -58,6 +58,17 @@ npm test
 
 Configuration is loaded with `rc` which means you can override any configuration variables by defining them in `server/.vyardagerc`. However, if you use the npm/docker commands outlined in this document, all necessary variables will be set for you when running in either development or testing mode.
 
+#### Environment variables
+
+Name|Definition
+-|-
+DATABASE_URL|Postgres connection string for database connection.
+SESSION_SECRET|Salt for hashing passwords.
+
+#### Creating Initial User
+
+The database is not seeded for security. Instead, you need to create an initial admin user account by making a request to `/api/v1/initialUser`. The request payload should be a JSON object containing the keys `username` and `password`. The request will fail if the `User` table is not empty.
+
 #### Production Configuration
 
 This app is designed to be run on Heroku. Since Heroku does not install development dependencies for building, `npm` must be directed not to run in production mode, otherwise the correct version of `@babel/cli` cannot be installed (`npx` uses an outdated version). Set the following environment variable in Heroku:
@@ -65,10 +76,3 @@ This app is designed to be run on Heroku. Since Heroku does not install developm
 ```bash
 NPM_CONFIG_PRODUCTION=false
 ```
-
-Other environment variables that are necessary for running in production are outlined in the table below.
-
-Name|Definition
--|-
-DATABASE_URL|Postgres connection string for database connection.
-SESSION_SECRET|Salt for hashing passwords.
