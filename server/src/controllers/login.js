@@ -28,7 +28,7 @@ export default (router) => {
       .first();
 
     // Database does not have trust - check username again.
-    if (user.username !== username) {
+    if (!user || user.username !== username) {
       throw new LoginError(401, 'Incorrect username.');
     }
 
