@@ -10,4 +10,5 @@ Pvm|Tunnit|Mitä tein
 22.3.|6|Production-konfiguraation debuggaaminen, tietokannan suunnittelu ja dokumentaation kirjoittaminen.
 23.3.|4|Autentikoinnin toteuttaminen.
 24.3.|3|Dokumentaation ja käyttäjähallinnan kirjoittaminen.
-**YHT.**|26|
+27.3.|3|UI:n aloittaminen.
+**YHT.**|29|
