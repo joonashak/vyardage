@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import Header from '../Header';
 
 
 export default () => (
-  <Container>
-    Vyardage.
-  </Container>
+  <>
+    <Header />
+    You are home.
+  </>
 );
