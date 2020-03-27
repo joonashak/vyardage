@@ -42,6 +42,7 @@ Table Ball {
 }
 
 enum LIE_TYPE {
+  Tee
   Fairway
   Rough
   Sand
