@@ -11,4 +11,5 @@ Pvm|Tunnit|Mitä tein
 23.3.|4|Autentikoinnin toteuttaminen.
 24.3.|3|Dokumentaation ja käyttäjähallinnan kirjoittaminen.
 27.3.|3|UI:n aloittaminen.
-**YHT.**|29|
+28.3.|2|Sisäänkirjautumisen implementointi UI:ssa.
+**YHT.**|31|

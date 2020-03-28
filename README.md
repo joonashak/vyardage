@@ -60,10 +60,12 @@ Configuration is loaded with `rc` which means you can override any configuration
 
 #### Environment variables
 
-Name|Definition
--|-
-DATABASE_URL|Postgres connection string for database connection.
-SESSION_SECRET|Salt for hashing passwords.
+Name|Required|Definition
+-|:-:|-
+DATABASE_URL|✅|Postgres connection string for database connection.
+SESSION_SECRET|✅|Salt for hashing passwords.
+PORT||Port to listen to. Defaults to 3000.
+FRONTEND_URL||Frontend URL. Used only in development mode to configure CORS. Defaults to `http://localhost:3001`
 
 #### Creating Initial User
 

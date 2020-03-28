@@ -1,12 +1,14 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TextField, Button } from '@material-ui/core';
+import { useStore } from 'react-hookstore';
 import Header from '../Header';
 import { login } from '../../services/loginService';
 
 
 export default () => {
   const { handleSubmit, control, errors } = useForm({ mode: 'onBlur' });
+  const [loggedIn, setLoggedIn] = useStore('loggedIn');
 
   const submit = async (data) => {
     if (Object.keys(errors).length > 0) {
@@ -15,7 +17,10 @@ export default () => {
 
     const { username, password } = data;
     const res = await login(username, password);
-    console.log(res);
+
+    if (!res.error) {
+      setLoggedIn(true);
+    }
   };
 
   return (
