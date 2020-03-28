@@ -2,10 +2,21 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TextField, Button } from '@material-ui/core';
 import Header from '../Header';
+import { login } from '../../services/loginService';
 
 
 export default () => {
   const { handleSubmit, control, errors } = useForm({ mode: 'onBlur' });
+
+  const submit = async (data) => {
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    const { username, password } = data;
+    const res = await login(username, password);
+    console.log(res);
+  };
 
   return (
     <>
@@ -37,7 +48,7 @@ export default () => {
           error={!!errors.password}
           helperText={errors.password && errors.password.message}
         />
-        <Button onClick={handleSubmit((data) => console.log(data))}>
+        <Button onClick={handleSubmit(submit)}>
           Log In
         </Button>
       </form>

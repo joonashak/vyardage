@@ -5,9 +5,8 @@ import { LoginError, ConfigError } from '../utils/customErrors';
 import config from '../utils/config';
 
 
-// TODO: Handle first login (i.e., empty user table).
 export default (router) => {
-  router.post('/api/v1/login', csrf({ cookie: true, ignoreMethods: ['POST'] }, async (req, res) => {
+  router.post('/api/v1/login', csrf({ cookie: true, ignoreMethods: ['POST'] }), async (req, res) => {
     const { username, password } = req.body;
 
     // Make sure salt is configured!
@@ -48,7 +47,7 @@ export default (router) => {
     res.cookie('XSRF-Token', req.csrfToken());
 
     res.send({ message: 'Login successful.' });
-  }));
+  });
 
   /**
    * Log out the current user.
