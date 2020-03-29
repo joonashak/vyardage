@@ -12,4 +12,5 @@ Pvm|Tunnit|Mitä tein
 24.3.|3|Dokumentaation ja käyttäjähallinnan kirjoittaminen.
 27.3.|3|UI:n aloittaminen.
 28.3.|2|Sisäänkirjautumisen implementointi UI:ssa.
-**YHT.**|31|
+29.3.|3|Material-UI:n opettelu ja sisäänkirjautumisnäkymän tyylittely.
+**YHT.**|34|

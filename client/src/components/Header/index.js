@@ -18,6 +18,7 @@ export default () => {
     backgroundColor: theme.palette.primary.dark,
     paddingTop: '3px',
     paddingBottom: '3px',
+    marginBottom: '2rem',
   };
 
   return (
