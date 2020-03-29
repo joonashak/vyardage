@@ -1,12 +1,15 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-const LoginButton = ({ history }) => (
-  <Button onClick={() => history.push('/login')}>
-    Log In
+export default () => (
+  <Button
+    color="primary"
+    component={Link}
+    to="/login"
+    variant="contained"
+  >
+    Login
   </Button>
 );
-
-export default withRouter(LoginButton);
