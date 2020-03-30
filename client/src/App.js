@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { createStore, useStore } from 'react-hookstore';
+import { pink } from '@material-ui/core/colors';
 import HomeView from './components/views/HomeView';
 import LoginView from './components/views/LoginView';
 import GlobalNotification from './components/GlobalNotification';
@@ -26,6 +27,9 @@ export default () => {
   const theme = createMuiTheme({
     palette: {
       type: 'dark',
+      secondary: {
+        main: pink.A100,
+      },
     },
   });
 
