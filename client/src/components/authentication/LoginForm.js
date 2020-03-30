@@ -11,6 +11,7 @@ import { login } from '../../services/loginService';
 export default () => {
   const { handleSubmit, control, errors } = useForm({ mode: 'onBlur' });
   const [, setLoggedIn] = useStore('loggedIn');
+  const [, setNotification] = useStore('globalNotification');
 
   const submit = async (data) => {
     if (Object.keys(errors).length > 0) {
@@ -20,9 +21,17 @@ export default () => {
     const { username, password } = data;
     const res = await login(username, password);
 
-    if (!res.error) {
-      setLoggedIn(true);
+    if (res.error) {
+      setNotification({
+        type: 'error',
+        message: `Login failed: ${res.error.response.data.message}`,
+      });
+
+      return;
     }
+
+    setLoggedIn(true);
+    setNotification({ type: 'success', message: 'You were logged in!', autoHide: true });
   };
 
   return (
