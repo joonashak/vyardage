@@ -230,5 +230,62 @@ paths:
       operationId: get-api-v1-checkSession
       description: Utility endpoint for the frontend to check if the stored session is still valid.
       requestBody: {}
+  /api/v1/balls:
+    get:
+      summary: Get all balls
+      tags:
+        - Features
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ball'
+              examples:
+                Example:
+                  value:
+                    - id: 7b728ee9-9c07-4762-8075-6f73769bbaa2
+                      name: Titleist Pro V1x (L87)
+                      distance: 5.6
+                      spin: 5.2
+                    - id: 20edd06c-ae69-4a89-8277-057750f09a47
+                      name: TaylorMade TP5 (L47)
+                      distance: 3.5
+                      spin: 4
+      operationId: get-api-v1-balls
+      description: Returns all balls in database. Requires authentication.
 components:
-  schemas: {}
+  schemas:
+    Ball:
+      title: Ball
+      type: object
+      x-tags:
+        - Features
+      description: Represents different ball types in WGT.
+      properties:
+        id:
+          type: string
+          description: UUID v4
+        name:
+          type: string
+          description: Brand name of the ball.
+        distance:
+          description: In-game distance metric.
+          type: number
+        spin:
+          description: In-game spin metric.
+          type: number
+      required:
+        - id
+        - name
+        - distance
+        - spin
+      x-examples:
+        Example:
+          id: 7b728ee9-9c07-4762-8075-6f73769bbaa2
+          name: Titleist Pro V1x (L87)
+          distance: 5.6
+          spin: 5.2
