@@ -8,6 +8,7 @@ import HomeView from './components/views/HomeView';
 import LoginView from './components/views/LoginView';
 import GlobalNotification from './components/GlobalNotification';
 import { checkSession } from './services/loginService';
+import Logout from './components/authentication/Logout';
 
 
 createStore('loggedIn', false);
@@ -40,6 +41,7 @@ export default () => {
 
         <Switch>
           <Route path="/login" exact component={LoginView} />
+          <Route path="/logout" exact component={Logout} />
           <Route path="/" component={HomeView} />
         </Switch>
 
