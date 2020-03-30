@@ -1,32 +1,15 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import {
-  TextField, Button, Grid, Typography,
-} from '@material-ui/core';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { Grid, Typography } from '@material-ui/core';
 import { useStore } from 'react-hookstore';
-import { login } from '../../services/loginService';
+import { Redirect } from 'react-router-dom';
 import ViewWrapper from './ViewWrapper';
+import LoginForm from '../authentication/LoginForm';
 
 
 export default () => {
-  const { handleSubmit, control, errors } = useForm({ mode: 'onBlur' });
-  const [loggedIn, setLoggedIn] = useStore('loggedIn');
+  const [loggedIn] = useStore('loggedIn');
 
-  const submit = async (data) => {
-    if (Object.keys(errors).length > 0) {
-      return;
-    }
-
-    const { username, password } = data;
-    const res = await login(username, password);
-
-    if (!res.error) {
-      setLoggedIn(true);
-    }
-  };
-
-  return (
+  return loggedIn ? (<Redirect to="/" />) : (
     <ViewWrapper>
       <Grid container spacing={5}>
         <Grid item xs={12}>
@@ -34,56 +17,7 @@ export default () => {
             Login
           </Typography>
         </Grid>
-        <Grid item xs={12}>
-          <Typography variant="body1" gutterBottom>
-            Enter your credentials to log in.
-          </Typography>
-          <Typography variant="body2" style={{ fontStyle: 'italic' }}>
-            (This app does not allow public registrations.)
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Controller
-            as={TextField}
-            name="username"
-            control={control}
-            defaultValue=""
-            label="Username"
-            autoComplete="username"
-            variant="filled"
-            rules={{ required: 'Username cannot be empty' }}
-            error={!!errors.username}
-            helperText={errors.username && errors.username.message}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Controller
-            as={TextField}
-            name="password"
-            control={control}
-            defaultValue=""
-            label="Password"
-            autoComplete="current-password"
-            variant="filled"
-            type="password"
-            rules={{ required: 'Password cannot be empty' }}
-            error={!!errors.password}
-            helperText={errors.password && errors.password.message}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            onClick={handleSubmit(submit)}
-            variant="contained"
-            color="primary"
-            startIcon={<LockOpenIcon />}
-            fullWidth
-          >
-            Log In
-          </Button>
-        </Grid>
+        <LoginForm />
       </Grid>
     </ViewWrapper>
   );

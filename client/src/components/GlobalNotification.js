@@ -1,3 +1,11 @@
+/**
+ * This component renders a single, global notification in accordance with Material Design rules.
+ * To trigger the notification, use the hookstore `globalNotification`, setting its value to an
+ * object with the fields:
+ *  - `type`: One of Material-UI's Alert severity values (`error`, `warning`, `info` or `success`).
+ *  - `message`: The message to show in the notification.
+ *  - `autoHide` (optional): Set to `true` to automatically hide the notification after a while.
+ */
 import React, { useState, useEffect } from 'react';
 import { createStore, useStore } from 'react-hookstore';
 import { Snackbar } from '@material-ui/core';
