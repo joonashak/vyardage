@@ -6,7 +6,6 @@ import { createStore, useStore } from 'react-hookstore';
 import HomeView from './components/views/HomeView';
 import LoginView from './components/views/LoginView';
 import GlobalNotification from './components/GlobalNotification';
-
 import { checkSession } from './services/loginService';
 
 
@@ -17,9 +16,12 @@ export default () => {
 
   // Update login status when the application loads.
   useEffect(() => {
-    const res = checkSession();
-    setLoggedIn(!res.error);
-  }, []);
+    const asyncCheck = async () => {
+      const res = await checkSession();
+      setLoggedIn(!res.error);
+    };
+    asyncCheck();
+  }, [setLoggedIn]);
 
   const theme = createMuiTheme({
     palette: {
