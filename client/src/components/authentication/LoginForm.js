@@ -77,6 +77,7 @@ export default () => {
       </Grid>
       <Grid item xs={12}>
         <Button
+          type="submit"
           onClick={handleSubmit(submit)}
           variant="contained"
           color="primary"

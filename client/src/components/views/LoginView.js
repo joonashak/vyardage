@@ -11,14 +11,16 @@ export default () => {
 
   return loggedIn ? (<Redirect to="/" />) : (
     <ViewWrapper>
-      <Grid container spacing={5}>
-        <Grid item xs={12}>
-          <Typography variant="h5">
-            Login
-          </Typography>
+      <form>
+        <Grid container spacing={5}>
+          <Grid item xs={12}>
+            <Typography variant="h5">
+              Login
+            </Typography>
+          </Grid>
+          <LoginForm />
         </Grid>
-        <LoginForm />
-      </Grid>
+      </form>
     </ViewWrapper>
   );
 };
