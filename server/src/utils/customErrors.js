@@ -26,3 +26,9 @@ export class ForbiddenError extends CustomError {
     super('ForbiddenError', 403, message);
   }
 }
+
+export class PrivateRouteError extends CustomError {
+  constructor() {
+    super('PrivateRouteError', 401, 'Authentication required.');
+  }
+}

@@ -3,6 +3,7 @@ import csrf from 'csurf';
 import User from '../models/User';
 import { LoginError, ConfigError } from '../utils/customErrors';
 import config from '../utils/config';
+import { auth } from '../middlewares/authentication';
 
 
 export default (router) => {
@@ -55,5 +56,12 @@ export default (router) => {
   router.get('/api/v1/logout', async (req, res) => {
     req.session.destroy();
     res.send({ message: 'Logged out.' });
+  });
+
+  /**
+   * Check for valid session.
+   */
+  router.get('/api/v1/checkSession', auth, (req, res) => {
+    res.send({ message: 'Session is valid.' });
   });
 };

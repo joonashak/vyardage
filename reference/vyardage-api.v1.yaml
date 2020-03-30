@@ -184,5 +184,51 @@ paths:
                   type: string
                 password:
                   type: string
+  /api/v1/checkSession:
+    get:
+      summary: Check for valid session
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              examples:
+                Session is valid:
+                  value:
+                    message: Session is valid.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  type:
+                    type: string
+                  data:
+                    type: string
+                required:
+                  - message
+                  - type
+              examples:
+                Session is not valid:
+                  value:
+                    message: Authentication required.
+                    type: PrivateRouteError
+                    data: {}
+      operationId: get-api-v1-checkSession
+      description: Utility endpoint for the frontend to check if the stored session is still valid.
+      requestBody: {}
 components:
   schemas: {}

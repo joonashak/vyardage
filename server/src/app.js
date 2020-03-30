@@ -11,7 +11,7 @@ import session from 'express-session';
 import knexSession from 'connect-session-knex';
 import config from './utils/config';
 import knexConfig from '../knexfile';
-import errorHandler from './utils/errorHandling';
+import errorHandler from './middlewares/errorHandling';
 import apiController from './api';
 
 
@@ -52,4 +52,5 @@ app.use(express.static('public'));
 app.get('*', (req, res) => res.sendFile(path.resolve('public', 'index.html')));
 
 app.listen(config.port,
+  /* eslint-disable-next-line no-console */
   () => console.log(`Vyardage server running in ${process.env.NODE_ENV} mode at port ${config.port}.`));
