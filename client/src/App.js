@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { createStore, useStore } from 'react-hookstore';
 import HomeView from './components/views/HomeView';
 import LoginView from './components/views/LoginView';
 import GlobalNotification from './components/GlobalNotification';
 
+import { checkSession } from './services/loginService';
+
+
+createStore('loggedIn', false);
 
 export default () => {
+  const [, setLoggedIn] = useStore('loggedIn');
+
+  // Update login status when the application loads.
+  useEffect(() => {
+    const res = checkSession();
+    setLoggedIn(!res.error);
+  }, []);
+
   const theme = createMuiTheme({
     palette: {
       type: 'dark',

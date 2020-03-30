@@ -2,12 +2,10 @@ import React from 'react';
 import {
   Grid, Container, Typography, useTheme,
 } from '@material-ui/core';
-import { createStore, useStore } from 'react-hookstore';
+import { useStore } from 'react-hookstore';
 import LoginButton from './LoginButton';
 import Menu from './Menu';
 
-
-createStore('loggedIn', false);
 
 export default () => {
   const [loggedIn] = useStore('loggedIn');

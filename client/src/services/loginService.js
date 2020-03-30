@@ -28,3 +28,14 @@ export const logout = async () => {
     return { error };
   }
 };
+
+/**
+ * Check if the current session is still valid.
+ */
+export const checkSession = async () => {
+  try {
+    return await axios.get(`${url}/checkSession`, config);
+  } catch (error) {
+    return { error };
+  }
+}
