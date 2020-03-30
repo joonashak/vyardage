@@ -4,6 +4,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import HomeView from './components/views/HomeView';
 import LoginView from './components/views/LoginView';
+import GlobalNotification from './components/GlobalNotification';
+
 
 export default () => {
   const theme = createMuiTheme({
@@ -22,6 +24,7 @@ export default () => {
           <Route path="/" component={HomeView} />
         </Switch>
 
+        <GlobalNotification />
       </BrowserRouter>
     </ThemeProvider>
   );
