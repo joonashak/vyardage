@@ -14,4 +14,5 @@ Pvm|Tunnit|Mitä tein
 28.3.|2|Sisäänkirjautumisen implementointi UI:ssa.
 29.3.|3|Material-UI:n opettelu ja sisäänkirjautumisnäkymän tyylittely.
 30.3.|7|Notifikaatiojärjestelmän ja menun tekeminen fronttiin. Pallon lisääminen API:in ja dokumentointi.
-**YHT.**|41|
+31.3.|3|Testien kirjoittaminen ja debuggaaminen.
+**YHT.**|44|

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Drawer, List, Container, Divider, Button,
+  Drawer, List, Container, Divider, Button, IconButton,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
@@ -18,9 +18,9 @@ export default () => {
 
   return (
     <>
-      <Button onClick={toggle}>
+      <IconButton onClick={toggle} aria-label="Open Menu">
         <MenuIcon />
-      </Button>
+      </IconButton>
       <Drawer anchor="top" open={isOpen} onClose={toggle}>
         <Container maxWidth="md">
           <List>

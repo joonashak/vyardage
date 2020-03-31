@@ -22,7 +22,7 @@ export default () => {
   return (
     <Grid container alignItems="stretch" style={headerStyle}>
       <Container maxWidth="md">
-        <Grid container spacing={0}>
+        <Grid container spacing={0} alignItems="center">
           <Grid item xs={6}>
             <Typography variant="h6">
               Vyardage
