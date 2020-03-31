@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - run: npm run install:e2e
-      - run: docker-compose up -d test-app
+      - run: docker-compose up -d test-db test-app
       - run: timeout 5m bash -c 'until $(curl --output /dev/null --silent --fail http://localhost:3001); do printf .; sleep 5; done'
       - run: npm run test:ci
       - store_artifacts:
