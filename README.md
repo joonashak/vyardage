@@ -54,6 +54,8 @@ To run tests locally (requires docker):
 npm test
 ```
 
+When writing new tests, bring the server up in test mode with `npm run start:test`, switch to `e2e/` folder and fire up Cypress (e.g. `cypress open`). This gives you the benefit of always having an empty database on start-up.
+
 ### Configuration
 
 Configuration is loaded with `rc` which means you can override any configuration variables by defining them in `server/.vyardagerc`. However, if you use the npm/docker commands outlined in this document, all necessary variables will be set for you when running in either development or testing mode.
@@ -65,7 +67,7 @@ Name|Required|Definition
 DATABASE_URL|✅|Postgres connection string for database connection.
 SESSION_SECRET|✅|Salt for hashing passwords.
 PORT||Port to listen to. Defaults to 3000.
-FRONTEND_URL||Frontend URL. Used only in development mode to configure CORS. Defaults to `http://localhost:3001`
+FRONTEND_URL||Frontend URL. Used only in development mode to configure CORS. Defaults to `http://localhost:3000`
 
 #### Creating Initial User
 

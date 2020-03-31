@@ -13,6 +13,7 @@
     "heroku-postbuild": "NODE_ENV=production npm run build && npm run migrate",
     "start": "cd server && npm run start",
     "start:dev": "cd server && npm run start:dev",
+    "start:test": "npm run build:client && docker-compose up test-app",
     "test:ci": "cd e2e && npm run test",
     "test": "docker-compose build test-app && docker-compose run tests; docker-compose down",
     "dev": "docker-compose up db adminer app; exit 0",
