@@ -7,7 +7,7 @@
     "build": "./node_modules/.bin/babel src -d dist",
     "start": "node dist/app.js",
     "start:dev": "npm ci && nodemon --exec babel-node src/app.js",
-    "start:test": "npm ci && npm start",
+    "start:test": "npm ci && npm run build && npm run migrate && npm start",
     "migrate": "npx knex migrate:latest"
   },
   "author": "Joonas Häkkinen",

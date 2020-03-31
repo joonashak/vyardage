@@ -26,8 +26,8 @@ services:
       - NODE_ENV=test
       - DATABASE_URL=postgresql://postgres:postgres@test-db:5432/postgres
       - SESSION_SECRET=asd
-    depends_on:
-      - test-db
+    #depends_on:
+    #  - test-db
     volumes:
       - /usr/src/app/server/node_modules/
     command: npm run start:test
@@ -57,6 +57,7 @@ services:
     environment:
       - CYPRESS_BASE_URL=http://test-app:3001
     depends_on:
+      - test-db
       - test-app
     volumes:
       - ./e2e/cypress:/e2e/cypress

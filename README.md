@@ -54,7 +54,7 @@ To run tests locally (requires docker):
 npm test
 ```
 
-When writing new tests, bring the server up in test mode with `npm run start:test`, switch to `e2e/` folder and fire up Cypress (e.g. `cypress open`). This gives you the benefit of always having an empty database on start-up.
+When writing new tests, bring the server up in test mode with `npm run test:dev`, switch to `e2e/` folder and fire up Cypress (e.g. `cypress open`). This gives you the benefit of always having an empty database on start-up.
 
 ### Configuration
 
