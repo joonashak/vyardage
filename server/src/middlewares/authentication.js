@@ -26,7 +26,7 @@ export const auth = async (req, res, next) => {
 
   try {
     const user = await User.query().findById(uid);
-    req.session.role = user.role;
+    req.session.isAdmin = user.isAdmin;
   } catch {
     throw new PrivateRouteError();
   }
@@ -47,12 +47,12 @@ export const authAdmin = async (req, res, next) => {
 
   try {
     user = await User.query().findById(uid);
-    req.session.role = user.role;
+    req.session.isAdmin = user.isAdmin;
   } catch {
     throw new PrivateRouteError();
   }
 
-  if (user.role !== 'admin') {
+  if (!user.isAdmin) {
     throw new ForbiddenError('Admin role required.');
   }
 

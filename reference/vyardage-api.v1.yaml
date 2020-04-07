@@ -282,6 +282,45 @@ paths:
                       clubType: 3-wood
       operationId: get-api-v1-clubs
       description: Returns all balls in database. Requires authentication.
+  /api/v1/ball:
+    post:
+      summary: Create Ball
+      tags:
+        - Features
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ball'
+      operationId: post-api-v1-ball
+      description: '`id` is optional and will be generated if not received.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ball'
+            examples: {}
+  /api/v1/club:
+    post:
+      summary: Create Club
+      tags:
+        - Features
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Club'
+      operationId: post-api-v1-club
+      description: '`id` is optional and will be generated if not received.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Club'
 components:
   schemas:
     Ball:

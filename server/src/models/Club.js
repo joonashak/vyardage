@@ -1,5 +1,6 @@
 import { Model } from 'objection';
 
+
 export default class Club extends Model {
   static tableName = 'Club';
 
@@ -31,8 +32,7 @@ export default class Club extends Model {
     required: [
       'id',
       'name',
-      'distance',
-      'spin',
+      'clubType',
     ],
   };
 }

@@ -1,5 +1,6 @@
 import { Model } from 'objection';
 
+
 export default class Ball extends Model {
   static tableName = 'Ball';
 

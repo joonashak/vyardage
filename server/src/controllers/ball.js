@@ -1,5 +1,6 @@
 import Ball from '../models/Ball';
-import { auth } from '../middlewares/authentication';
+import { auth, authAdmin } from '../middlewares/authentication';
+import addId from '../utils/addId';
 
 
 export default (router) => {
@@ -8,5 +9,13 @@ export default (router) => {
    */
   router.get('/api/v1/balls', auth, async (req, res) => {
     res.send(await Ball.query());
+  });
+
+  /**
+   * Create new ball.
+   */
+  router.post('/api/v1/ball', authAdmin, async (req, res) => {
+    const data = addId(req);
+    res.send(await Ball.query().insert(data).returning('*'));
   });
 };
