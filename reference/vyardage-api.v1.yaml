@@ -257,6 +257,31 @@ paths:
                       spin: 4
       operationId: get-api-v1-balls
       description: Returns all balls in database. Requires authentication.
+  /api/v1/clubs:
+    get:
+      summary: Get all clubs
+      tags:
+        - Features
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Club'
+              examples:
+                Example:
+                  value:
+                    - id: 46b17315-e9e3-411f-8a07-b5edd6e0d575
+                      name: TaylorMade M1 9.0° (L74)
+                      clubType: Driver
+                    - id: 055e2872-e5d3-4bda-94af-f88a4aad55ab
+                      name: Callaway Rogue Sub Zero (L86)
+                      clubType: 3-wood
+      operationId: get-api-v1-clubs
+      description: Returns all balls in database. Requires authentication.
 components:
   schemas:
     Ball:
@@ -289,3 +314,40 @@ components:
           name: Titleist Pro V1x (L87)
           distance: 5.6
           spin: 5.2
+    Club:
+      title: Club
+      type: object
+      description: Represents different clubs in WGT.
+      properties:
+        id:
+          type: string
+          description: UUID v4
+        name:
+          type: string
+          description: Brand name and level of the club.
+        clubType:
+          type: string
+          enum:
+            - Driver
+            - 3-wood
+            - Hybrid
+            - 3-iron
+            - 4-iron
+            - 5-iron
+            - 6-iron
+            - 7-iron
+            - 8-iron
+            - 9-iron
+            - Pitching wedge
+            - Gap wedge
+            - Sand wedge
+            - Lob wedge
+      required:
+        - id
+        - name
+        - clubType
+      x-examples:
+        Example:
+          id: 46b17315-e9e3-411f-8a07-b5edd6e0d575
+          name: TaylorMade M1 9.0° (L74)
+          clubType: Driver
