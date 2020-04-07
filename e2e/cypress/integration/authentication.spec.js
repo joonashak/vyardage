@@ -44,6 +44,7 @@ describe('Authentication', () => {
 
     cy.url().should('equal', Cypress.config().baseUrl + '/')
     cy.contains('Login')
+    cy.contains('this should fail')
   })
 
   it('Incorrect username is rejected', () => {
