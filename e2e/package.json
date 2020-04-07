@@ -8,6 +8,6 @@
   "author": "Joonas Häkkinen",
   "license": "MIT",
   "dependencies": {
-    "cypress": "^4.2.0"
+    "cypress": "^4.3.0"
   }
 }
