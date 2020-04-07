@@ -10,8 +10,6 @@ services:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
       - SESSION_SECRET=asd
-    #depends_on:
-    #  - db
     volumes:
       - ./server:/usr/src/app/server
       - /usr/src/app/server/node_modules/
@@ -26,8 +24,6 @@ services:
       - NODE_ENV=test
       - DATABASE_URL=postgresql://postgres:postgres@test-db:5432/postgres
       - SESSION_SECRET=asd
-    #depends_on:
-    #  - test-db
     volumes:
       - /usr/src/app/server/node_modules/
     command: npm run start:test
