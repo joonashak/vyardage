@@ -38,4 +38,4 @@ export const checkSession = async () => {
   } catch (error) {
     return { error };
   }
-}
+};

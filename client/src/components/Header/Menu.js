@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Drawer, List, Container, Divider, Button, IconButton,
+  Drawer, List, Container, Divider, IconButton,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
