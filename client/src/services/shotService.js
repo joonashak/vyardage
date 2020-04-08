@@ -11,7 +11,7 @@ const url = process.env.REACT_APP_API_URL;
  */
 export const save = async (data) => {
   try {
-    const result = await axios.post(`${url}/shot`, data, config);
+    const result = await axios.post(`${url}/shot`, data, config());
     return result.data;
   } catch (error) {
     return { error };

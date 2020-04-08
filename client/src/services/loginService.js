@@ -23,7 +23,7 @@ export const login = async (username, password) => {
  */
 export const logout = async () => {
   try {
-    return await axios.get(`${url}/logout`, config);
+    return await axios.get(`${url}/logout`, config());
   } catch (error) {
     return { error };
   }
@@ -34,7 +34,7 @@ export const logout = async () => {
  */
 export const checkSession = async () => {
   try {
-    return await axios.get(`${url}/checkSession`, config);
+    return await axios.get(`${url}/checkSession`, config());
   } catch (error) {
     return { error };
   }

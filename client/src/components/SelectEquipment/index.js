@@ -18,6 +18,7 @@ export default ({ gameData, setEquipment }) => {
         </Typography>
       </Grid>
       <Grid item xs={12} md={6}>
+        {/* FIXME: Handle empty ball array. */}
         <Autocomplete
           id="select-ball"
           options={balls}

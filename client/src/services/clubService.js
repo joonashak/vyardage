@@ -10,7 +10,7 @@ const url = process.env.REACT_APP_API_URL;
  */
 export const getClubs = async () => {
   try {
-    const result = await axios.get(`${url}/clubs`, config);
+    const result = await axios.get(`${url}/clubs`, config());
     return result.data;
   } catch (error) {
     return { error };
