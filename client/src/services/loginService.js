@@ -11,7 +11,7 @@ const url = process.env.REACT_APP_API_URL;
  */
 export const login = async (username, password) => {
   try {
-    const result = await axios.post(`${url}/login`, { username, password }, config);
+    const result = await axios.post(`${url}/login`, { username, password }, config());
     return result.data;
   } catch (error) {
     return { error };

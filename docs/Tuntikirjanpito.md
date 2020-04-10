@@ -16,5 +16,5 @@ Pvm|Tunnit|Mitä tein
 30.3.|7|Notifikaatiojärjestelmän ja menun tekeminen fronttiin. Pallon lisääminen API:in ja dokumentointi.
 31.3.|3|Testien kirjoittaminen ja debuggaaminen.
 7.4.|3|Mailan ja lyönnin lisääminen API:in, lisää reittejä, dokumentointi.
-8.4.|6|Lyönnin lisäämisen implementointi, jotta datan kerääminen voi alkaa.
-**YHT.**|53|
+8.4.|7|Lyönnin lisäämisen implementointi, jotta datan kerääminen voi alkaa. CSRF:n debuggaaminen ja productionin konfigurointi.
+**YHT.**|54|
