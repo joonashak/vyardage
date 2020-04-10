@@ -63,6 +63,8 @@ export default ({ gameData }) => {
           rules={{ required: 'Lie % is required.' }}
           defaultValue="100"
           unit="%"
+          type="number"
+          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={6}>
@@ -76,6 +78,8 @@ export default ({ gameData }) => {
             max: { value: 359, message: 'Maximum value is 359°.' },
           }}
           unit="deg"
+          type="number"
+          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={6}>
@@ -89,6 +93,8 @@ export default ({ gameData }) => {
             max: { value: 40, message: 'It probably does not blow that fast.' },
           }}
           unit="mph"
+          type="number"
+          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={12}>
@@ -102,6 +108,8 @@ export default ({ gameData }) => {
             max: { value: 300, message: 'Maximum elevation is 300.' },
           }}
           unit="ft"
+          type="number"
+          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={12}>
@@ -127,6 +135,8 @@ export default ({ gameData }) => {
             max: { value: 100, message: 'Maximum spin is 100.' },
           }}
           unit="%"
+          type="number"
+          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={6}>
@@ -140,6 +150,8 @@ export default ({ gameData }) => {
             max: { value: 100, message: 'Maximum power is 100.' },
           }}
           unit="%"
+          type="number"
+          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={12}>
@@ -153,6 +165,8 @@ export default ({ gameData }) => {
             max: { value: 400, message: 'Maximum carry is 400.' },
           }}
           unit="yds"
+          type="number"
+          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={12}>
