@@ -36,7 +36,7 @@ export default (router) => {
       throw new LoginError(401, 'Incorrect password.');
     }
 
-    // express-session start a new session when any attribute is set:
+    // express-session starts a new session when any attribute is set:
     req.session.uid = user.id;
 
     // Persistent login.

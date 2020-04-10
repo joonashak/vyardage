@@ -28,7 +28,6 @@ export const auth = async (req, res, next) => {
     const user = await User.query().findById(uid);
     req.session.isAdmin = user.isAdmin;
   } catch (err) {
-    console.log(req.session);
     throw new PrivateRouteError();
   }
 
