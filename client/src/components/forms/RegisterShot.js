@@ -108,8 +108,6 @@ export default ({ gameData }) => {
             max: { value: 300, message: 'Maximum elevation is 300.' },
           }}
           unit="ft"
-          type="number"
-          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={12}>
