@@ -10,7 +10,7 @@ import RegisterShot from '../forms/RegisterShot';
 export default () => {
   const [gameData, setGameData] = useState({});
   const [isLoaded, setLoaded] = useState(false);
-  const [selectionReady, setSelectionReady] = useState(true);
+  const [selectionReady, setSelectionReady] = useState(false);
 
   useEffect(() => {
     const asyncFetch = async () => {

@@ -5,7 +5,19 @@ import NumberField from './NumberField';
 
 
 export default ({ formControl }) => {
-  const ref = React.useRef();
+  const liePctRef = React.useRef();
+  const windDirRef = React.useRef();
+
+  const handleLieType = () => {
+    if (['Tee', 'Fairway'].includes(formControl.getValues().lieType)) {
+      formControl.setValue('liePct', 100);
+      windDirRef.current.select();
+      return;
+    }
+
+    liePctRef.current.select();
+  };
+
   return (
     <>
       <Grid item xs={6}>
@@ -15,7 +27,7 @@ export default ({ formControl }) => {
           label="Lie Type"
           rules={{ required: 'Lie Type is required.' }}
           select
-          SelectProps={{ MenuProps: { onExited: () => ref.current.focus() } }}
+          SelectProps={{ MenuProps: { onExited: handleLieType } }}
         >
           <MenuItem value="Tee">Tee</MenuItem>
           <MenuItem value="Fairway">Fairway</MenuItem>
@@ -28,9 +40,14 @@ export default ({ formControl }) => {
           formControl={formControl}
           name="liePct"
           label="Lie %"
-          rules={{ required: 'Lie % is required.' }}
+          rules={{
+            required: 'Lie % is required.',
+            min: { value: 0, message: 'Minimum value is 0%.' },
+            max: { value: 100, message: 'Maximum value is 100%.' },
+          }}
           defaultValue="100"
           unit="%"
+          inputRef={liePctRef}
         />
       </Grid>
       <Grid item xs={6}>
@@ -44,6 +61,7 @@ export default ({ formControl }) => {
             max: { value: 359, message: 'Maximum value is 359°.' },
           }}
           unit="deg"
+          inputRef={windDirRef}
         />
       </Grid>
       <Grid item xs={6}>
@@ -71,7 +89,6 @@ export default ({ formControl }) => {
           }}
           unit="ft"
           signButton
-          inputRef={ref}
         />
       </Grid>
     </>

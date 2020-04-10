@@ -17,4 +17,5 @@ Pvm|Tunnit|Mitä tein
 31.3.|3|Testien kirjoittaminen ja debuggaaminen.
 7.4.|3|Mailan ja lyönnin lisääminen API:in, lisää reittejä, dokumentointi.
 8.4.|7|Lyönnin lisäämisen implementointi, jotta datan kerääminen voi alkaa. CSRF:n debuggaaminen ja productionin konfigurointi.
-**YHT.**|54|
+10.4.|5|Debuggaaminen, lyönnin syöttämisen UX:n parantelu.
+**YHT.**|59|
