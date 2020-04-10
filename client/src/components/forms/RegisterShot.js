@@ -5,6 +5,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import { useStore } from 'react-hookstore';
 import { save as saveShot } from '../../services/shotService';
 import ControlledInput from './ControlledInput';
+import NumberField from './NumberField';
 
 
 export default ({ gameData }) => {
@@ -13,6 +14,8 @@ export default ({ gameData }) => {
   const [, setNotification] = useStore('globalNotification');
 
   const submit = async (data) => {
+    console.log(data);
+    return;
     if (Object.keys(errors).length > 0) {
       return;
     }
@@ -48,6 +51,12 @@ export default ({ gameData }) => {
           label="Lie Type"
           rules={{ required: 'Lie Type is required.' }}
           select
+          onChange={([event]) => {
+            console.log(event.target.value);
+            formControl.setValue('liePct', '69');
+            console.log(formControl.getValues());
+            return event.target.value;
+          }}
         >
           <MenuItem value="Tee">Tee</MenuItem>
           <MenuItem value="Fairway">Fairway</MenuItem>
@@ -56,19 +65,17 @@ export default ({ gameData }) => {
         </ControlledInput>
       </Grid>
       <Grid item xs={6}>
-        <ControlledInput
+        <NumberField
           formControl={formControl}
           name="liePct"
           label="Lie %"
           rules={{ required: 'Lie % is required.' }}
           defaultValue="100"
           unit="%"
-          type="number"
-          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={6}>
-        <ControlledInput
+        <NumberField
           formControl={formControl}
           name="windDir"
           label="Wind Direction"
@@ -78,12 +85,10 @@ export default ({ gameData }) => {
             max: { value: 359, message: 'Maximum value is 359°.' },
           }}
           unit="deg"
-          type="number"
-          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={6}>
-        <ControlledInput
+        <NumberField
           formControl={formControl}
           name="windSpeed"
           label="Wind Speed"
@@ -93,12 +98,10 @@ export default ({ gameData }) => {
             max: { value: 40, message: 'It probably does not blow that fast.' },
           }}
           unit="mph"
-          type="number"
-          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={12}>
-        <ControlledInput
+        <NumberField
           formControl={formControl}
           name="elevation"
           label="Elevation"
@@ -108,6 +111,7 @@ export default ({ gameData }) => {
             max: { value: 300, message: 'Maximum elevation is 300.' },
           }}
           unit="ft"
+          signButton
         />
       </Grid>
       <Grid item xs={12}>
@@ -123,7 +127,7 @@ export default ({ gameData }) => {
         </ControlledInput>
       </Grid>
       <Grid item xs={6}>
-        <ControlledInput
+        <NumberField
           formControl={formControl}
           name="spin"
           label="Spin"
@@ -133,12 +137,11 @@ export default ({ gameData }) => {
             max: { value: 100, message: 'Maximum spin is 100.' },
           }}
           unit="%"
-          type="number"
-          pattern="[0-9]*"
+          signButton
         />
       </Grid>
       <Grid item xs={6}>
-        <ControlledInput
+        <NumberField
           formControl={formControl}
           name="power"
           label="Power"
@@ -148,12 +151,10 @@ export default ({ gameData }) => {
             max: { value: 100, message: 'Maximum power is 100.' },
           }}
           unit="%"
-          type="number"
-          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={12}>
-        <ControlledInput
+        <NumberField
           formControl={formControl}
           name="actCarry"
           label="Carry Distance"
@@ -163,8 +164,6 @@ export default ({ gameData }) => {
             max: { value: 400, message: 'Maximum carry is 400.' },
           }}
           unit="yds"
-          type="number"
-          pattern="[0-9]*"
         />
       </Grid>
       <Grid item xs={12}>
