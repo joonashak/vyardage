@@ -31,7 +31,8 @@ export default ({
 
   return (
     <ControlledInput
-      as={<TextField type="number" inputProps={{ pattern: '[0-9]*' }} />}
+      as={<TextField inputProps={{ pattern: '[0-9]*' }} />}
+      type="number"
       formControl={formControl}
       name={name}
       InputProps={inputProps}

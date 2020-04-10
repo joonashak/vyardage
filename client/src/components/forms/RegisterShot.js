@@ -5,7 +5,6 @@ import SaveIcon from '@material-ui/icons/Save';
 import { useStore } from 'react-hookstore';
 import { save as saveShot } from '../../services/shotService';
 import ControlledInput from './ControlledInput';
-import NumberField from './NumberField';
 import EnvironmentInput from './EnvironmentInput';
 import SwingInput from './SwingInput';
 
