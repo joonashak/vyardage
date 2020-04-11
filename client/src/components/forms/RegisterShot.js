@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Grid, MenuItem, Typography } from '@material-ui/core';
+import {
+  Button, Grid, MenuItem, Typography,
+} from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import { useStore } from 'react-hookstore';
 import { save as saveShot } from '../../services/shotService';
@@ -15,6 +17,7 @@ export default ({ gameData }) => {
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit, errors, setValue } = formControl;
   const [, setNotification] = useStore('globalNotification');
+  const scrollRef = React.createRef();
 
   const clearForm = () => {
     setValue('lieType', 'Fairway');
@@ -55,7 +58,7 @@ export default ({ gameData }) => {
       <SelectEquipment gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
 
       <Grid item xs={12}>
-        <Typography variant="h6">
+        <Typography variant="h6" innerRef={scrollRef}>
           Shot Details
         </Typography>
       </Grid>
@@ -80,7 +83,10 @@ export default ({ gameData }) => {
       <Grid item xs={12}>
         <Button
           type="submit"
-          onClick={handleSubmit(submit)}
+          onClick={() => {
+            handleSubmit(submit)();
+            scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+          }}
           variant="contained"
           color="primary"
           size="large"
