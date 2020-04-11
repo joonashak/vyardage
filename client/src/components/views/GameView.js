@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ViewWrapper from './ViewWrapper';
 import { getClubs } from '../../services/clubService';
 import LoadingIndicator from '../misc/LoadingIndicator';
-import SelectEquipment from '../SelectEquipment';
 import { getBalls } from '../../services/ballService';
 import RegisterShot from '../forms/RegisterShot';
 
@@ -10,7 +9,6 @@ import RegisterShot from '../forms/RegisterShot';
 export default () => {
   const [gameData, setGameData] = useState({});
   const [isLoaded, setLoaded] = useState(false);
-  const [selectionReady, setSelectionReady] = useState(false);
 
   useEffect(() => {
     const asyncFetch = async () => {
@@ -24,25 +22,15 @@ export default () => {
     asyncFetch();
   }, []);
 
-  const setEquipment = (equipment) => {
-    setGameData((prev) => ({ equipment, ...prev }));
-    setSelectionReady(true);
-  };
-
-  // Loading screen.
-  if (!isLoaded) {
-    return (
-      <ViewWrapper>
-        <LoadingIndicator text="Loading game data..." />
-      </ViewWrapper>
-    );
-  }
-
   return (
     <ViewWrapper>
-      {selectionReady
+      {isLoaded
         ? <RegisterShot gameData={gameData} />
-        : <SelectEquipment gameData={gameData} setEquipment={setEquipment} />}
+        : (
+          <ViewWrapper>
+            <LoadingIndicator text="Loading game data..." />
+          </ViewWrapper>
+        )}
     </ViewWrapper>
   );
 };

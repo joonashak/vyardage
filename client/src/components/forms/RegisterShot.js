@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Grid, MenuItem } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
@@ -7,9 +7,11 @@ import { save as saveShot } from '../../services/shotService';
 import ControlledInput from './ControlledInput';
 import EnvironmentInput from './EnvironmentInput';
 import SwingInput from './SwingInput';
+import SelectEquipment from './SelectEquipment';
 
 
 export default ({ gameData }) => {
+  const [equipment, setEquipment] = useState({});
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit, errors } = formControl;
   const [, setNotification] = useStore('globalNotification');
@@ -20,14 +22,14 @@ export default ({ gameData }) => {
     }
 
     const shot = data;
-    shot.ballId = gameData.equipment.ball.id;
+    shot.ballId = equipment.ball.id;
     // Format floats.
     ['liePct', 'spin', 'power'].forEach((key) => { shot[key] /= 100; });
     // Format integers.
     ['windDir', 'windSpeed', 'elevation', 'actCarry']
       .forEach((key) => { shot[key] = Math.round(shot[key]); });
 
-    const res = await saveShot(data);
+    const res = await saveShot(shot);
 
     if (res.error) {
       setNotification({
@@ -43,6 +45,7 @@ export default ({ gameData }) => {
 
   return (
     <Grid container spacing={2}>
+      <SelectEquipment gameData={gameData} setEquipment={setEquipment} />
       <EnvironmentInput formControl={formControl} />
 
       <Grid item xs={12}>
