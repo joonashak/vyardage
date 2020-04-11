@@ -45,7 +45,7 @@ export default ({ gameData }) => {
 
   return (
     <Grid container spacing={2}>
-      <SelectEquipment gameData={gameData} setEquipment={setEquipment} />
+      <SelectEquipment gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
       <EnvironmentInput formControl={formControl} />
 
       <Grid item xs={12}>
