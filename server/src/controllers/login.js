@@ -40,7 +40,7 @@ export default (router) => {
     req.session.uid = user.id;
 
     // Persistent login.
-    if (req.body.remember === '1') {
+    if (req.body.remember) {
       req.session.cookie.maxAge = config.loginDuration;
     }
 

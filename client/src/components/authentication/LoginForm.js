@@ -1,6 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Grid, Typography } from '@material-ui/core';
+import {
+  Button, Grid, Typography, FormControlLabel, Checkbox,
+} from '@material-ui/core';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import { useStore } from 'react-hookstore';
 import { login } from '../../services/loginService';
@@ -9,7 +11,7 @@ import ControlledInput from '../forms/ControlledInput';
 
 export default () => {
   const formControl = useForm({ mode: 'onBlur' });
-  const { handleSubmit, errors } = formControl;
+  const { handleSubmit, errors, register } = formControl;
   const [, setLoggedIn] = useStore('loggedIn');
   const [, setNotification] = useStore('globalNotification');
 
@@ -18,8 +20,7 @@ export default () => {
       return;
     }
 
-    const { username, password } = data;
-    const res = await login(username, password);
+    const res = await login(data);
 
     if (res.error) {
       setNotification({
@@ -61,6 +62,12 @@ export default () => {
           autoComplete="current-password"
           type="password"
           rules={{ required: 'Password cannot be empty' }}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <FormControlLabel
+          control={<Checkbox name="remember" inputRef={register} />}
+          label="Stay logged in for 30 days."
         />
       </Grid>
       <Grid item xs={12}>

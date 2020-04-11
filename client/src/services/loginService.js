@@ -6,12 +6,11 @@ const url = process.env.REACT_APP_API_URL;
 
 /**
  * Attempt a login with given credentials.
- * @param {string} username
- * @param {string} password
+ * @param {object} data
  */
-export const login = async (username, password) => {
+export const login = async (data) => {
   try {
-    const result = await axios.post(`${url}/login`, { username, password }, config());
+    const result = await axios.post(`${url}/login`, data, config());
     return result.data;
   } catch (error) {
     return { error };

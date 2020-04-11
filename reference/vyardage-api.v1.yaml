@@ -93,7 +93,7 @@ paths:
 
         ### Session Persistence
 
-        The client can persist their session by setting `remember = 1` in the request payload and honoring the `Set-Cookie` headers sent in the response.
+        The client can persist their session by setting `remember = true` in the request payload and honoring the `Set-Cookie` headers sent in the response.
 
         ### CSRF Protection
 
@@ -111,8 +111,8 @@ paths:
                   type: string
                   minLength: 1
                 remember:
-                  type: string
-                  description: 'For the value "1", the session cookie will have 30 days maxAge, otherwise none will be set.'
+                  type: boolean
+                  description: 'If true, the session cookie will have 30 days maxAge, otherwise none will be set.'
                   enum:
                     - '0'
                     - '1'
