@@ -28,6 +28,7 @@ export default ({ formControl }) => {
           rules={{ required: 'Lie Type is required.' }}
           select
           SelectProps={{ MenuProps: { onExited: handleLieType } }}
+          defaultValue="Fairway"
         >
           <MenuItem value="Tee">Tee</MenuItem>
           <MenuItem value="Fairway">Fairway</MenuItem>

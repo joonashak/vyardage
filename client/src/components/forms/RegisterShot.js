@@ -13,8 +13,15 @@ import SelectEquipment from './SelectEquipment';
 export default ({ gameData }) => {
   const [equipment, setEquipment] = useState({});
   const formControl = useForm({ mode: 'onBlur' });
-  const { handleSubmit, errors } = formControl;
+  const { handleSubmit, errors, setValue } = formControl;
   const [, setNotification] = useStore('globalNotification');
+
+  const clearForm = () => {
+    setValue('lieType', 'Fairway');
+    setValue('liePct', 100);
+    ['windDir', 'windSpeed', 'elevation', 'clubId', 'spin', 'power', 'actCarry']
+      .forEach((key) => setValue(key, ''));
+  };
 
   const submit = async (data) => {
     if (Object.keys(errors).length > 0) {
@@ -34,13 +41,13 @@ export default ({ gameData }) => {
     if (res.error) {
       setNotification({
         type: 'error',
-        message: `Shot entry failed: ${res.error.response.data.message}`,
+        message: `Shot entry failed: ${res.error.response && res.error.response.data.message}`,
       });
-
       return;
     }
 
     setNotification({ type: 'success', message: 'Shot recorded!', autoHide: true });
+    clearForm();
   };
 
   return (
