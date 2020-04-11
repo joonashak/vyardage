@@ -321,6 +321,103 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Club'
+  /api/v1/shot:
+    post:
+      summary: Save Shot
+      tags:
+        - Features
+      operationId: post-api-v1-shot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                clubId:
+                  type: string
+                  format: uuid
+                ballId:
+                  type: string
+                  format: uuid
+                lieType:
+                  type: string
+                  enum:
+                    - Tee
+                    - Fairway
+                    - Rough
+                    - Sand
+                  description: Type of the lie where the shot is hit from (enumerated).
+                liePct:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                  description: Lie percent (some kind of a weird lie goodness value in the game) expressed as a decimal from 0 through 1.
+                windDir:
+                  type: integer
+                  description: Wind direction relative to the target line in degrees.
+                  minimum: 0
+                  maximum: 359
+                windSpeed:
+                  type: integer
+                  minimum: 0
+                  description: Wind speed in mph.
+                elevation:
+                  type: integer
+                  description: Difference in elevation between shooting and target locations. Negative value means the target is lower. Expressed in feet.
+                spin:
+                  type: number
+                  minimum: -1
+                  maximum: 1
+                  description: Spin percentage on the shot. Expressed as a decimal from -1 through 1. Negative values denote backspin.
+                power:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                  description: Striking power as a decimal from 0 through 1.
+                actCarry:
+                  type: integer
+                  minimum: 0
+                  description: Actual carry distance in yards.
+              required:
+                - clubId
+                - ballId
+                - lieType
+                - liePct
+                - windDir
+                - windSpeed
+                - elevation
+                - spin
+                - power
+                - actCarry
+        description: ''
+      description: Enter a new shot into the database.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Example:
+                  value:
+                    id: 184e8414-2930-4b5e-b918-b79a5f5a1e70
+                    clubId: 46b17315-e9e3-411f-8a07-b5edd6e0d575
+                    ballId: 7b728ee9-9c07-4762-8075-6f73769bbaa2
+                    lieType: Tee
+                    liePct: 1
+                    windDir: 180
+                    windSpeed: 8
+                    elevation: -5
+                    spin: -1
+                    power: 1
+                    actCarry: 300
+                    userId: 9072a5af-20fc-4fad-a7ea-57dce7910ca4
+                    predCarry: null
 components:
   schemas:
     Ball:
