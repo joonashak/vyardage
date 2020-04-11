@@ -1,15 +1,15 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import {
-  TextField, Button, Grid, Typography,
-} from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { Button, Grid, Typography } from '@material-ui/core';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import { useStore } from 'react-hookstore';
 import { login } from '../../services/loginService';
+import ControlledInput from '../forms/ControlledInput';
 
 
 export default () => {
-  const { handleSubmit, control, errors } = useForm({ mode: 'onBlur' });
+  const formControl = useForm({ mode: 'onBlur' });
+  const { handleSubmit, errors } = formControl;
   const [, setLoggedIn] = useStore('loggedIn');
   const [, setNotification] = useStore('globalNotification');
 
@@ -45,34 +45,22 @@ export default () => {
         </Typography>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Controller
-          as={TextField}
+        <ControlledInput
+          formControl={formControl}
           name="username"
-          control={control}
-          defaultValue=""
           label="Username"
           autoComplete="username"
-          variant="filled"
           rules={{ required: 'Username cannot be empty' }}
-          error={!!errors.username}
-          helperText={errors.username && errors.username.message}
-          fullWidth
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <Controller
-          as={TextField}
+        <ControlledInput
+          formControl={formControl}
           name="password"
-          control={control}
-          defaultValue=""
           label="Password"
           autoComplete="current-password"
-          variant="filled"
           type="password"
           rules={{ required: 'Password cannot be empty' }}
-          error={!!errors.password}
-          helperText={errors.password && errors.password.message}
-          fullWidth
         />
       </Grid>
       <Grid item xs={12}>
