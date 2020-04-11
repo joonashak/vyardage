@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Grid, MenuItem } from '@material-ui/core';
+import { Button, Grid, MenuItem, Typography } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import { useStore } from 'react-hookstore';
 import { save as saveShot } from '../../services/shotService';
@@ -53,6 +53,13 @@ export default ({ gameData }) => {
   return (
     <Grid container spacing={2}>
       <SelectEquipment gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
+
+      <Grid item xs={12}>
+        <Typography variant="h6">
+          Shot Details
+        </Typography>
+      </Grid>
+
       <EnvironmentInput formControl={formControl} />
 
       <Grid item xs={12}>
