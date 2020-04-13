@@ -31,6 +31,7 @@ export default class Shot extends Model {
       power: { type: 'number', minimum: 0, maximum: 1 },
       actCarry: { type: 'integer', minimum: 0, maximum: 400 },
       predCarry: { type: 'integer' },
+      createdAt: { type: 'string' },
     },
     required: [
       'id',

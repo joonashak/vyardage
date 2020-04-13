@@ -418,6 +418,7 @@ paths:
                     actCarry: 300
                     userId: 9072a5af-20fc-4fad-a7ea-57dce7910ca4
                     predCarry: null
+                    createdAt: '2020-04-13T08:31:48.217Z'
 components:
   schemas:
     Ball:

@@ -24,6 +24,7 @@ Table Shot {
   power FLOAT [not null, default: 1, note: "Power % (0-1)"]
   actCarry INT [not null, note: "Actual carry length (yds)"]
   predCarry INT [note: "Predicted carry length (yds), used to measure prediction accuracy"]
+  createdAt TIMESTAMPZ [not null, default: 'NOW()']
   
   Note: "Shot parameters, results and predictions."
 }
