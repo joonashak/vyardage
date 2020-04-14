@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Autocomplete } from '@material-ui/lab';
 import {
-  TextField, Grid, Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Button, Chip, makeStyles,
+  Grid, Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Button, Chip, makeStyles,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CloseIcon from '@material-ui/icons/Close';
 import SelectClubs from './SelectClubs';
+import SelectBall from './SelectBall';
 
 
 const useStyles = makeStyles(() => ({
@@ -15,7 +15,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default ({ gameData, equipment, setEquipment }) => {
-  const { balls } = gameData;
   const classes = useStyles();
 
   const selectionOk = () => {
@@ -24,11 +23,6 @@ export default ({ gameData, equipment, setEquipment }) => {
   };
 
   const [expanded, setExpanded] = useState(!selectionOk());
-
-  const setBall = (ball) => {
-    localStorage.setItem('vyardage.equipment.ballId', ball.id);
-    setEquipment((prev) => ({ ...prev, ball }));
-  };
 
   const toggleExpanded = () => setExpanded((prev) => !prev);
 
@@ -65,18 +59,8 @@ export default ({ gameData, equipment, setEquipment }) => {
                 <i>Choices are remembered on this device.</i>
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Autocomplete
-                id="select-ball"
-                options={balls}
-                getOptionLabel={(ball) => ball.name}
-                renderInput={(params) => <TextField {...params} label="Ball" variant="outlined" fullWidth />}
-                onChange={(_, value) => setBall(value)}
-                value={equipment.ball || null}
-                data-cy="select-ball"
-              />
-            </Grid>
 
+            <SelectBall balls={gameData.balls} equipment={equipment} setEquipment={setEquipment} />
             <SelectClubs gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
 
             <Grid item xs={false} md={6} />
