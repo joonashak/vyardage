@@ -13,6 +13,7 @@ import config from './utils/config';
 import knexConfig from '../knexfile';
 import errorHandler from './middlewares/errorHandling';
 import apiController from './api';
+import seed from './utils/seed';
 
 
 // Connect to database.
@@ -46,6 +47,11 @@ app
 
 // Register controllers providing API endpoints
 apiController(router);
+
+// Database seeding utility for development and testing.
+if (process.env.NODE_ENV !== 'production') {
+  seed(router);
+}
 
 // Serve static frontend.
 app.use(express.static('public'));
