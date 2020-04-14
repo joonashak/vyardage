@@ -21,7 +21,7 @@
     "dev:test:migrate": "docker-compose up -d test-db && docker-compose run test-dev-app npm run migrate",
     "dev:migrate": "docker-compose up -d db && docker-compose run app npm run migrate; docker-compose down",
     "migrate": "cd server && npm run migrate",
-    "cypress:open": "cd e2e/ && npx cypress open --config baseUrl=http://localhost:3000"
+    "cypress:open": "cd e2e/ && npx cypress open --config baseUrl=http://localhost:3000 --env API_URL=http://localhost:3001"
   },
   "repository": {
     "type": "git",
