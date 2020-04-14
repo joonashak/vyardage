@@ -1,4 +1,4 @@
-exports.seed = (knex) => knex('Club').insert([
+module.exports = [
   {
     id: '0079daba-33dc-4998-9a84-ab0ccabed842',
     name: 'Test Driver 1',
@@ -69,4 +69,4 @@ exports.seed = (knex) => knex('Club').insert([
     name: 'Test Lob wedge 1',
     clubType: 'Lob wedge',
   },
-]);
+];
