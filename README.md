@@ -34,17 +34,19 @@ npm run dev
 Followed with the frontend:
 
 ```bash
-cd client
+cd client/
 npm start
 ```
 
-To run migrations, make sure the backend is down (use `docker-compose down` if necessary) and then command:
+### Database Migration
+
+Migrations are not run automatically for the local development database. To run migrations, make sure the backend is down (use `docker-compose down` if necessary) and then command:
 
 ```bash
 npm run dev:migrate
 ```
 
-### Testing
+### Running Tests
 
 Tests are automatically run by CI on deploy.
 
@@ -54,7 +56,29 @@ To run tests locally (requires docker):
 npm test
 ```
 
-When writing new tests, bring the server up in test mode with `npm run test:dev`, switch to `e2e/` folder and fire up Cypress (e.g. `cypress open`). This gives you the benefit of always having an empty database on start-up.
+### Writing Tests
+
+The project contains a test development script which gives you an empty, fresh database on every launch. Migrations are also run automatically. You will need three terminal tabs for this setup.
+
+Start the backend in test development mode:
+
+```bash
+npm run dev:test
+```
+
+Followed with the frontend:
+
+```bash
+cd client/
+npm start
+```
+
+And finally launch the test suite:
+
+```bash
+cd e2e/
+cypress open
+```
 
 ### Configuration
 

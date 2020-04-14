@@ -14,10 +14,11 @@
     "start": "cd server && npm run start",
     "start:dev": "cd server && npm run start:dev",
     "start:test": "cd server && npm run start:test",
-    "test:dev": "npm run build:client && docker-compose up test-db test-app; docker-compose rm -fsv test-db",
     "test:ci": "cd e2e && npm run test",
     "test": "docker-compose build test-app && docker-compose run tests; docker-compose down",
     "dev": "docker-compose up db adminer app; exit 0",
+    "dev:test": "npm run dev:test:migrate && docker-compose up adminer test-dev-app; docker-compose down",
+    "dev:test:migrate": "docker-compose up -d test-db && docker-compose run test-dev-app npm run migrate",
     "dev:migrate": "docker-compose up -d db && docker-compose run app npm run migrate; docker-compose down",
     "migrate": "cd server && npm run migrate"
   },

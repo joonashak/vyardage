@@ -15,6 +15,20 @@ services:
       - /usr/src/app/server/node_modules/
     command: npm run start:dev
 
+  test-dev-app:
+    build: .
+    ports:
+      - 3001:3001
+    container_name: vyardage-test-dev-app
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@test-db:5432/postgres
+      - SESSION_SECRET=asd
+    volumes:
+      - ./server:/usr/src/app/server
+      - /usr/src/app/server/node_modules/
+    command: npm run start:dev
+
   test-app:
     build: .
     ports:
