@@ -16,3 +16,15 @@ export const getClubs = async () => {
     return { error };
   }
 };
+
+/**
+ * Fetch all possible club types.
+ */
+export const getClubTypes = async () => {
+  try {
+    const result = await axios.get(`${url}/clubTypes`, config());
+    return result.data;
+  } catch (error) {
+    return { error };
+  }
+};

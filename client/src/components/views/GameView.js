@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ViewWrapper from './ViewWrapper';
-import { getClubs } from '../../services/clubService';
+import { getClubs, getClubTypes } from '../../services/clubService';
 import LoadingIndicator from '../misc/LoadingIndicator';
 import { getBalls } from '../../services/ballService';
 import RegisterShot from '../forms/RegisterShot';
@@ -14,6 +14,7 @@ export default () => {
     const asyncFetch = async () => {
       const data = {
         clubs: await getClubs(),
+        clubTypes: await getClubTypes(),
         balls: await getBalls(),
       };
       setGameData(data);

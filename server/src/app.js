@@ -17,7 +17,8 @@ import seed from './utils/seed';
 
 
 // Connect to database.
-const knex = Knex(knexConfig);
+/* eslint-disable-next-line import/prefer-default-export */
+export const knex = Knex(knexConfig);
 Model.knex(knex);
 
 const app = express();

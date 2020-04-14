@@ -419,6 +419,41 @@ paths:
                     userId: 9072a5af-20fc-4fad-a7ea-57dce7910ca4
                     predCarry: null
                     createdAt: '2020-04-13T08:31:48.217Z'
+  /api/v1/clubTypes:
+    get:
+      summary: Get all club types
+      tags:
+        - Features
+      operationId: get-api-v1-clubTypes
+      description: 'Returns all possible club types, i.e., the values of the `CLUB_TYPE` enumeration.'
+      requestBody: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Club types
+                items:
+                  type: string
+              examples:
+                Example:
+                  value:
+                    - Driver
+                    - 3-wood
+                    - Hybrid
+                    - 3-iron
+                    - 4-iron
+                    - 5-iron
+                    - 6-iron
+                    - 7-iron
+                    - 8-iron
+                    - 9-iron
+                    - Pitching wedge
+                    - Gap wedge
+                    - Sand wedge
+                    - Lob wedge
 components:
   schemas:
     Ball:

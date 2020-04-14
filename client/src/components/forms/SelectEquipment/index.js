@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CloseIcon from '@material-ui/icons/Close';
+import SelectClubs from './SelectClubs';
 
 
 const useStyles = makeStyles(() => ({
@@ -15,22 +16,22 @@ const useStyles = makeStyles(() => ({
 
 export default ({ gameData, equipment, setEquipment }) => {
   const { balls } = gameData;
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const classes = useStyles();
 
   useEffect(() => {
     const ballId = localStorage.getItem('vyardage.equipment.ballId');
     const ball = balls.find((b) => b.id === ballId);
-    setEquipment({ ball });
+    setEquipment((prev) => ({ ...prev, ball }));
 
-    if (!ballId) {
+    if (!ball) {
       setExpanded(true);
     }
   }, [balls, setEquipment]);
 
   const setBall = (ball) => {
     localStorage.setItem('vyardage.equipment.ballId', ball.id);
-    setEquipment({ ball });
+    setEquipment((prev) => ({ ...prev, ball }));
   };
 
   const toggleExpanded = () => setExpanded((prev) => !prev);
@@ -79,6 +80,8 @@ export default ({ gameData, equipment, setEquipment }) => {
                 data-cy="select-ball"
               />
             </Grid>
+
+            <SelectClubs gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
 
             <Grid item xs={false} md={6} />
             <Grid item xs={false} md={8} />
