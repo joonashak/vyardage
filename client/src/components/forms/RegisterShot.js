@@ -74,7 +74,7 @@ export default ({ gameData }) => {
           select
         >
           {gameData.clubs.map((club) => (
-            <MenuItem value={club.id} key={club.id}>{club.clubType}</MenuItem>))}
+            <MenuItem value={club.id} key={club.id} data-cy={`club-option-${club.clubType}`}>{club.clubType}</MenuItem>))}
         </ControlledInput>
       </Grid>
 

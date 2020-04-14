@@ -28,7 +28,7 @@ export default ({ gameData, equipment, setEquipment }) => {
             renderInput={(params) => <TextField {...params} label={clubType} variant="outlined" fullWidth />}
             onChange={(_, value) => setClub(value)}
             value={equipment[clubType] || null}
-            data-cy="select-ball"
+            data-cy={`select-club-${clubType}`}
           />
         </Grid>
       ))}

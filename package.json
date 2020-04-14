@@ -15,7 +15,7 @@
     "start:dev": "cd server && npm run start:dev",
     "start:test": "cd server && npm run start:test",
     "test:ci": "cd e2e && npm run test",
-    "test": "docker-compose build test-app && docker-compose run tests; docker-compose down",
+    "test": "npm run build:client && docker-compose build test-app && docker-compose run tests; docker-compose down",
     "dev": "docker-compose up db adminer app; exit 0",
     "dev:test": "npm run dev:test:migrate && docker-compose up adminer test-dev-app; docker-compose down",
     "dev:test:migrate": "docker-compose up -d test-db && docker-compose run test-dev-app npm run migrate",

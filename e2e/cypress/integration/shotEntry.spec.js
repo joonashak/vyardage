@@ -18,7 +18,7 @@ describe('Shot Entry', () => {
     cy.get('#windSpeed').type('5');
     cy.get('#elevation').type('-10');
     cy.get('#clubId').click();
-    cy.contains('Driver').click();
+    cy.get('[data-cy="club-option-Driver"]').click();
     cy.get('#spin').type('0');
     cy.get('#power').type('100');
     cy.get('#actCarry').type('310');
