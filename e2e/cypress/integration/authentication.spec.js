@@ -1,7 +1,5 @@
 // / <reference types="Cypress" />
 
-const apiUrl = Cypress.env('API_URL') || '';
-
 const login = (username, password) => {
   cy.visit('/login');
   cy.get('input[name=username]').type(username);
@@ -16,12 +14,7 @@ describe('Authentication', () => {
   before(() => {
     // Don't fail on non-200 status codes to enable repetitive test running in development.
     // This route gets implicitly tested later on, anyway.
-    cy.request({
-      method: 'POST',
-      url: `${apiUrl}/api/v1/initialUser`,
-      body: { username, password },
-      failOnStatusCode: false,
-    });
+    cy.createInitialUser(username, password);
   });
 
   it('Login page loads', () => {
