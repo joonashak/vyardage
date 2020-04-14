@@ -13,7 +13,7 @@ import SelectEquipment from './SelectEquipment';
 
 
 export default ({ gameData }) => {
-  const [equipment, setEquipment] = useState({});
+  const [equipment, setEquipment] = useState(gameData.savedEquipment);
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit, errors, setValue } = formControl;
   const [, setNotification] = useStore('globalNotification');

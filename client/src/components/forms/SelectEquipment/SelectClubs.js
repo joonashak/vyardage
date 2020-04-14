@@ -1,19 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Grid, Typography, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
 
 export default ({ gameData, equipment, setEquipment }) => {
   const { clubTypes, clubs } = gameData;
-
-  useEffect(() => {
-    clubTypes.forEach((clubType) => {
-      // FIXME: Move ls.getting stuff to gameview or smth.
-      const clubId = localStorage.getItem(`vyardage.equipment.${clubType}`);
-      const club = clubs.find((c) => c.id === clubId);
-      setEquipment((prev) => ({ ...prev, [clubType]: club }));
-    });
-  }, [clubs, clubTypes, setEquipment]);
 
   const setClub = (club) => {
     localStorage.setItem(`vyardage.equipment.${club.clubType}`, club.id);

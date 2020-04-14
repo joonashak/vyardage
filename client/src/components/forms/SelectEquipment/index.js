@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Autocomplete } from '@material-ui/lab';
 import {
   TextField, Grid, Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Button, Chip, makeStyles,
@@ -16,18 +16,14 @@ const useStyles = makeStyles(() => ({
 
 export default ({ gameData, equipment, setEquipment }) => {
   const { balls } = gameData;
-  const [expanded, setExpanded] = useState(true);
   const classes = useStyles();
 
-  useEffect(() => {
-    const ballId = localStorage.getItem('vyardage.equipment.ballId');
-    const ball = balls.find((b) => b.id === ballId);
-    setEquipment((prev) => ({ ...prev, ball }));
+  const selectionOk = () => {
+    const selectedClubs = gameData.clubTypes.map((type) => equipment[type]);
+    return equipment.ball && selectedClubs.find((club) => !!club);
+  };
 
-    if (!ball) {
-      setExpanded(true);
-    }
-  }, [balls, setEquipment]);
+  const [expanded, setExpanded] = useState(!selectionOk());
 
   const setBall = (ball) => {
     localStorage.setItem('vyardage.equipment.ballId', ball.id);

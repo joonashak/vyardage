@@ -1,8 +1,7 @@
-import Knex from 'knex';
 import Club from '../models/Club';
 import { auth, authAdmin } from '../middlewares/authentication';
 import addId from '../utils/addId';
-import knexConfig from '../../knexfile';
+import { knex } from '../app';
 
 
 export default (router) => {
@@ -25,7 +24,6 @@ export default (router) => {
    * Get all possible club types (i.e., CLUB_TYPE enumeration).
    */
   router.get('/api/v1/clubTypes', auth, async (req, res) => {
-    const knex = Knex(knexConfig);
     const clubTypes = await knex.raw('SELECT unnest(enum_range(NULL::"CLUB_TYPE")) AS "clubType"');
     res.send(clubTypes.rows.map((row) => row.clubType));
   });

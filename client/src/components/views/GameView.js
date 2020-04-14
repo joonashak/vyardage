@@ -12,12 +12,28 @@ export default () => {
 
   useEffect(() => {
     const asyncFetch = async () => {
-      const data = {
-        clubs: await getClubs(),
-        clubTypes: await getClubTypes(),
-        balls: await getBalls(),
-      };
-      setGameData(data);
+      // Fetch game data from the API.
+      const clubs = await getClubs();
+      const clubTypes = await getClubTypes();
+      const balls = await getBalls();
+
+      // Read past equipment selections from browser local storage.
+      const equipment = {};
+      const ballId = localStorage.getItem('vyardage.equipment.ballId');
+      equipment.ball = balls.find((b) => b.id === ballId);
+
+      clubTypes.forEach((clubType) => {
+        const clubId = localStorage.getItem(`vyardage.equipment.${clubType}`);
+        equipment[clubType] = clubs.find((c) => c.id === clubId);
+      });
+
+      setGameData({
+        clubs,
+        clubTypes,
+        balls,
+        savedEquipment: equipment,
+      });
+
       setLoaded(true);
     };
     asyncFetch();
