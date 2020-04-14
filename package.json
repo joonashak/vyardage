@@ -20,7 +20,8 @@
     "dev:test": "npm run dev:test:migrate && docker-compose up adminer test-dev-app; docker-compose down",
     "dev:test:migrate": "docker-compose up -d test-db && docker-compose run test-dev-app npm run migrate",
     "dev:migrate": "docker-compose up -d db && docker-compose run app npm run migrate; docker-compose down",
-    "migrate": "cd server && npm run migrate"
+    "migrate": "cd server && npm run migrate",
+    "cypress:open": "cd e2e/ && npx cypress open --config baseUrl=http://localhost:3000"
   },
   "repository": {
     "type": "git",

@@ -76,8 +76,7 @@ npm start
 And finally launch the test suite:
 
 ```bash
-cd e2e/
-cypress open
+npm run cypress:open
 ```
 
 ### Configuration
