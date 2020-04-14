@@ -20,4 +20,5 @@ Pvm|Tunnit|Mitä tein
 10.4.|5|Debuggaaminen, lyönnin syöttämisen UX:n parantelu.
 11.4.|7|Dokumentointi, lyöntilomakkeen parantelu.
 13.4.|1|Tietokannan muokkaaminen, docker.
-**YHT.**|67|
+14.4.|9|Testien kehittäminen, mailojen valinnan lisääminen lyöntilomakkeeseen.
+**YHT.**|76|

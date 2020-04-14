@@ -12,6 +12,8 @@ describe('Shot Entry', () => {
     cy.visit('/play');
     cy.get('[data-cy="select-ball"]').click();
     cy.contains('Test Ball 1').click();
+    cy.get('[data-cy="select-club-Driver"]').click();
+    cy.get('#select-club-Driver-option-0').click();
 
     // Enter shot details.
     cy.get('#windDir').type('180');
