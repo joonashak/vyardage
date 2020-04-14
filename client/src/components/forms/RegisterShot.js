@@ -53,6 +53,14 @@ export default ({ gameData }) => {
     clearForm();
   };
 
+  /**
+   * Get active clubs in the enumeration order.
+   */
+  const getActiveClubs = () => {
+    const activeKeys = gameData.clubTypes.filter((clubType) => equipment[clubType]);
+    return activeKeys.map((clubType) => equipment[clubType]);
+  };
+
   return (
     <Grid container spacing={2}>
       <SelectEquipment gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
@@ -73,7 +81,7 @@ export default ({ gameData }) => {
           rules={{ required: 'Club Selection is required.' }}
           select
         >
-          {gameData.clubs.map((club) => (
+          {getActiveClubs().map((club) => (
             <MenuItem value={club.id} key={club.id} data-cy={`club-option-${club.clubType}`}>{club.clubType}</MenuItem>))}
         </ControlledInput>
       </Grid>
