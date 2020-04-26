@@ -1,11 +1,11 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import NumberField from './NumberField';
 
 
 export default ({ formControl }) => (
   <>
-    <Grid item xs={6}>
+    <Grid item xs={6} md={4}>
       <NumberField
         formControl={formControl}
         name="spin"
@@ -19,7 +19,29 @@ export default ({ formControl }) => (
         signButton
       />
     </Grid>
-    <Grid item xs={6}>
+    <Grid item xs={3} md={1}>
+      <Button
+        onClick={() => formControl.setValue('spin', '-100')}
+        variant="contained"
+        size="large"
+        color="primary"
+        fullWidth
+      >
+        -100%
+      </Button>
+    </Grid>
+    <Grid item xs={3} md={1}>
+      <Button
+        onClick={() => formControl.setValue('spin', '0')}
+        variant="contained"
+        size="large"
+        color="primary"
+        fullWidth
+      >
+        0%
+      </Button>
+    </Grid>
+    <Grid item xs={6} md={4}>
       <NumberField
         formControl={formControl}
         name="power"
@@ -31,6 +53,17 @@ export default ({ formControl }) => (
         }}
         unit="%"
       />
+    </Grid>
+    <Grid item xs={6} md={2}>
+      <Button
+        onClick={() => formControl.setValue('power', '100')}
+        variant="contained"
+        size="large"
+        color="primary"
+        fullWidth
+      >
+        100%
+      </Button>
     </Grid>
     <Grid item xs={12}>
       <NumberField

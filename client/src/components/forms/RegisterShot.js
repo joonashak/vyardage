@@ -62,7 +62,7 @@ export default ({ gameData }) => {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} alignItems="center">
       <SelectEquipment gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
 
       <Grid item xs={12}>

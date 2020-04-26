@@ -21,4 +21,5 @@ Pvm|Tunnit|Mitä tein
 11.4.|7|Dokumentointi, lyöntilomakkeen parantelu.
 13.4.|1|Tietokannan muokkaaminen, docker.
 14.4.|9|Testien kehittäminen, mailojen valinnan lisääminen lyöntilomakkeeseen.
-**YHT.**|76|
+26.4.|2|Frontin refaktorointi ja UX:n parantelu.
+**YHT.**|78|
