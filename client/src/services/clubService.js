@@ -1,8 +1,5 @@
-import axios from 'axios';
-import config from './axiosConfig';
+import api from './api';
 
-
-const url = process.env.REACT_APP_API_URL;
 
 /* eslint-disable import/prefer-default-export */
 /**
@@ -10,7 +7,7 @@ const url = process.env.REACT_APP_API_URL;
  */
 export const getClubs = async () => {
   try {
-    const result = await axios.get(`${url}/clubs`, config());
+    const result = await api.get('clubs');
     return result.data;
   } catch (error) {
     return { error };
@@ -22,7 +19,7 @@ export const getClubs = async () => {
  */
 export const getClubTypes = async () => {
   try {
-    const result = await axios.get(`${url}/clubTypes`, config());
+    const result = await api.get('clubTypes');
     return result.data;
   } catch (error) {
     return { error };

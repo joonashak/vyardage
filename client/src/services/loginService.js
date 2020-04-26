@@ -1,8 +1,5 @@
-import axios from 'axios';
-import config from './axiosConfig';
+import api from './api';
 
-
-const url = process.env.REACT_APP_API_URL;
 
 /**
  * Attempt a login with given credentials.
@@ -10,7 +7,7 @@ const url = process.env.REACT_APP_API_URL;
  */
 export const login = async (data) => {
   try {
-    const result = await axios.post(`${url}/login`, data, config());
+    const result = await api.post('login', data);
     return result.data;
   } catch (error) {
     return { error };
@@ -22,7 +19,7 @@ export const login = async (data) => {
  */
 export const logout = async () => {
   try {
-    return await axios.get(`${url}/logout`, config());
+    return await api.get('logout');
   } catch (error) {
     return { error };
   }
@@ -33,7 +30,7 @@ export const logout = async () => {
  */
 export const checkSession = async () => {
   try {
-    return await axios.get(`${url}/checkSession`, config());
+    return await api.get('checkSession');
   } catch (error) {
     return { error };
   }

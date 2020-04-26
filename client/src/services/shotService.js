@@ -1,8 +1,5 @@
-import axios from 'axios';
-import config from './axiosConfig';
+import api from './api';
 
-
-const url = process.env.REACT_APP_API_URL;
 
 /* eslint-disable import/prefer-default-export */
 /**
@@ -11,7 +8,7 @@ const url = process.env.REACT_APP_API_URL;
  */
 export const save = async (data) => {
   try {
-    const result = await axios.post(`${url}/shot`, data, config());
+    const result = await api.post('shot', data);
     return result.data;
   } catch (error) {
     return { error };
