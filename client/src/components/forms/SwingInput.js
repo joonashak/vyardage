@@ -26,6 +26,7 @@ export default ({ formControl }) => (
         size="large"
         color="primary"
         fullWidth
+        data-cy="spin-button-100"
       >
         -100%
       </Button>
@@ -37,6 +38,7 @@ export default ({ formControl }) => (
         size="large"
         color="primary"
         fullWidth
+        data-cy="spin-button-0"
       >
         0%
       </Button>
@@ -61,6 +63,7 @@ export default ({ formControl }) => (
         size="large"
         color="primary"
         fullWidth
+        data-cy="power-button-100"
       >
         100%
       </Button>

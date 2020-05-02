@@ -100,6 +100,7 @@ export default ({ gameData }) => {
           size="large"
           startIcon={<SaveIcon />}
           fullWidth
+          data-cy="save-shot-button"
         >
           Save Shot
         </Button>

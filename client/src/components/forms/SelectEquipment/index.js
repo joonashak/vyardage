@@ -74,6 +74,7 @@ export default ({ gameData, equipment, setEquipment }) => {
                   variant="outlined"
                   size="large"
                   startIcon={<CloseIcon />}
+                  data-cy="close-eq-selection"
                 >
                   Close
                 </Button>
