@@ -10,6 +10,7 @@ import GlobalNotification from './components/GlobalNotification';
 import { checkSession } from './services/loginService';
 import Logout from './components/authentication/Logout';
 import GameView from './components/views/GameView';
+import SettingsView from './components/views/SettingsView';
 
 
 createStore('loggedIn', false);
@@ -44,6 +45,7 @@ export default () => {
           <Route path="/login" exact component={LoginView} />
           <Route path="/logout" exact component={Logout} />
           <Route path="/play" exact component={GameView} />
+          <Route path="/settings" exact component={SettingsView} />
           <Route path="/" component={HomeView} />
         </Switch>
 

@@ -28,7 +28,7 @@ export default ({ formControl }) => (
         fullWidth
         data-cy="spin-button-100"
       >
-        -100%
+        -100&nbsp;%
       </Button>
     </Grid>
     <Grid item xs={3} md={1}>
@@ -40,7 +40,7 @@ export default ({ formControl }) => (
         fullWidth
         data-cy="spin-button-0"
       >
-        0%
+        0&nbsp;%
       </Button>
     </Grid>
     <Grid item xs={6} md={4}>
@@ -65,7 +65,7 @@ export default ({ formControl }) => (
         fullWidth
         data-cy="power-button-100"
       >
-        100%
+        100&nbsp;%
       </Button>
     </Grid>
     <Grid item xs={12}>
