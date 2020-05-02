@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Typography, Grid, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, List, ListItem,
+  Typography, Grid, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ViewWrapper from './ViewWrapper';
 import { getBalls } from '../../services/ballService';
 import LoadingIndicator from '../misc/LoadingIndicator';
+import EditableBallList from '../EditableBallList.js';
 
 
 export default () => {
@@ -39,29 +40,17 @@ export default () => {
         </Grid>
 
         <Grid item xs={12}>
-          <Typography variant="h6" gutterBottom>
-            Balls
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12}>
-          <ExpansionPanel>
+          <ExpansionPanel expanded>
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="ball-list"
             >
-              <Typography>
-                All Balls
+              <Typography variant="h6" gutterBottom>
+                Balls
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <List>
-                {balls.map(ball => (
-                  <ListItem>
-                    {ball.name}
-                  </ListItem>
-                ))}
-              </List>
+              <EditableBallList balls={balls} />
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Grid>
