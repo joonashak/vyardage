@@ -17,7 +17,7 @@ export const getBalls = async () => {
  * Create new ball and return it.
  * @param {} data Ball data.
  */
-export const addBall = async (data) => {
+export const saveBall = async (data) => {
   try {
     const result = await api.post('ball', data);
     return result.data;
