@@ -302,6 +302,27 @@ paths:
             schema:
               $ref: '#/components/schemas/Ball'
             examples: {}
+    put:
+      summary: Update Ball
+      tags:
+        - Features
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ball'
+      operationId: put-api-v1-ball
+      description: |-
+        Updates the ball specified by the `id` field in payload. The ball's ID cannot be changed.
+
+        Returns the updated object.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ball'
   /api/v1/club:
     post:
       summary: Create Club
