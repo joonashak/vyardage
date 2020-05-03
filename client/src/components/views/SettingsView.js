@@ -1,34 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  Typography, Grid, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails,
+  Typography, Grid, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Dialog, DialogContent,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ViewWrapper from './ViewWrapper';
-import { getBalls } from '../../services/ballService';
 import LoadingIndicator from '../misc/LoadingIndicator';
 import EditableBallList from '../EditableBallList.js';
 
 
 export default () => {
-  const [balls, setBalls] = useState([]);
-  const [isLoaded, setLoaded] = useState(false);
+  const [isLoaded, setLoaded] = useState({ balls: false });
 
-  useEffect(() => {
-    const asyncFetch = async () => {
-      setBalls(await getBalls());
-      setLoaded(true);
-    };
-
-    asyncFetch();
-  }, []);
-
-  if (!isLoaded) {
-    return (
-      <ViewWrapper>
-        <LoadingIndicator text="Loading game data..." />
-      </ViewWrapper>
-    );
-  }
+  const loaded = (key) => {
+    setLoaded((prev) => ({ ...prev, [key]: true }));
+  };
 
   return (
     <ViewWrapper>
@@ -50,7 +35,7 @@ export default () => {
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <EditableBallList balls={balls} />
+              <EditableBallList loaded={() => loaded('balls')} />
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Grid>
@@ -61,6 +46,12 @@ export default () => {
           </Typography>
         </Grid>
       </Grid>
+
+      <Dialog open={!Object.values(isLoaded).every(Boolean)} fullWidth>
+        <DialogContent style={{ overflow: 'hidden' }}>
+          <LoadingIndicator text="Loading game data..." />
+        </DialogContent>
+      </Dialog>
     </ViewWrapper>
   );
 };

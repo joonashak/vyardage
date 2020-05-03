@@ -33,6 +33,8 @@ const logFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev';
 const router = promiseRouter();
 
 app
+  // Timeout for testing:
+  //.use((req, res, next) => setTimeout(next, 2000))
   .use(morgan(logFormat))
   .use(session({
     store: new (knexSession(session))({ knex }),
