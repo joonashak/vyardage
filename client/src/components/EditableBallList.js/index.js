@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  List, ListItem, useTheme, useMediaQuery, Button,
+  List, useTheme, useMediaQuery, Button, Grid,
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import BallListItem from './BallListItem';
@@ -32,9 +32,13 @@ export default ({ loaded }) => {
   };
 
   return (
-    <List style={{ width: '100%' }}>
-      {balls.map((ball) => <BallListItem ball={ball} key={`ball-properties-${ball.id}`} />)}
-      <ListItem>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <List style={{ width: '100%' }}>
+          {balls.map((ball) => <BallListItem ball={ball} key={`ball-properties-${ball.id}`} />)}
+        </List>
+      </Grid>
+      <Grid item xs={12}>
         <Button
           type="submit"
           onClick={() => setDialog(true)}
@@ -48,7 +52,7 @@ export default ({ loaded }) => {
           Add New Ball
         </Button>
         <BallPropertiesDialog open={dialog} onClose={addBall} />
-      </ListItem>
-    </List>
+      </Grid>
+    </Grid>
   );
 };

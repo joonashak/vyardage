@@ -12,7 +12,7 @@ export default ({ ball }) => (
       expandIcon={<ExpandMoreIcon />}
       aria-controls="ball-list"
     >
-      <Typography variant="body1" gutterBottom>
+      <Typography variant="body1">
         {ball.name}
       </Typography>
     </ExpansionPanelSummary>
