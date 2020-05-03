@@ -22,4 +22,5 @@ Pvm|Tunnit|Mitä tein
 13.4.|1|Tietokannan muokkaaminen, docker.
 14.4.|9|Testien kehittäminen, mailojen valinnan lisääminen lyöntilomakkeeseen.
 26.4.|2|Frontin refaktorointi ja UX:n parantelu.
-**YHT.**|78|
+2.5.|6|Lisää testejä, asetusvalikon kehittämistä fronttiin ja paaaaljon debuggausta.
+**YHT.**|84|

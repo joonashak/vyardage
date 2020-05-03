@@ -20,7 +20,7 @@ export default ({ balls }) => {
         </Typography>
       </ListItem>
       <ListItem>
-        <BallPropertiesForm />
+        Add new goes here...
       </ListItem>
     </List>
   );
