@@ -3,7 +3,6 @@ import {
   Typography, ListItem, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Grid, IconButton,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import BallPropertiesForm from './BallPropertiesForm';
 import BallDetails from './BallDetails';
 
 

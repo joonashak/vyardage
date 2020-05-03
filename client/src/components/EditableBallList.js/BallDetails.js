@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid, Typography, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import BallPropertiesForm from './BallPropertiesForm';
+import BallPropertiesDialog from './BallPropertiesDialog';
 
 
 export default ({ ball }) => {
@@ -40,7 +40,7 @@ export default ({ ball }) => {
           </IconButton>
         </Grid>
       </Grid>
-      <BallPropertiesForm ball={ball} open={editing} onClose={() => setEditing(false)} />
+      <BallPropertiesDialog ball={ball} open={editing} onClose={() => setEditing(false)} />
     </Grid>
   );
 };

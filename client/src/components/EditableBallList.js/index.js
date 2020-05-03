@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  List, ListItem, Typography, useTheme, useMediaQuery,
+  List, ListItem, Typography, useTheme, useMediaQuery, Button,
 } from '@material-ui/core';
-import BallPropertiesForm from './BallPropertiesForm';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import BallListItem from './BallListItem';
+import BallPropertiesDialog from './BallPropertiesDialog';
 
 
 export default ({ balls }) => {
+  const [dialog, setDialog] = useState(false);
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -14,13 +16,19 @@ export default ({ balls }) => {
     <List style={{ width: '100%' }}>
       {balls.map((ball) => <BallListItem ball={ball} key={`ball-properties-${ball.id}`} />)}
       <ListItem>
-        <Typography variant="h6" gutterBottom>
-          Add New Ball:
-          {mobile ? 'mobile' : 'not mobile'}
-        </Typography>
-      </ListItem>
-      <ListItem>
-        Add new goes here...
+        <Button
+          type="submit"
+          onClick={() => setDialog(true)}
+          variant="contained"
+          color="primary"
+          size="large"
+          startIcon={<AddCircleIcon />}
+          fullWidth
+          data-cy="add-ball-button"
+        >
+          Add New Ball
+        </Button>
+        <BallPropertiesDialog open={dialog} onClose={() => setDialog(false)} />
       </ListItem>
     </List>
   );

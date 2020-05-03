@@ -6,14 +6,27 @@ import {
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import ControlledInput from '../forms/ControlledInput';
+import { addBall } from '../../services/ballService';
 
 
 export default ({ ball, open, onClose }) => {
   const {
     id, name, distance, spin,
-  } = ball || { id: '' };
+  } = ball || {
+    id: '', name: '', distance: '', spin: '',
+  };
 
   const formControl = useForm({ mode: 'onBlur' });
+  const { handleSubmit } = formControl;
+
+  const submit = async (data) => {
+    const newBall = await addBall({
+      name: data.name,
+      distance: data.distance * 1,
+      spin: data.spin * 1,
+    });
+    console.log(newBall);
+  };
 
   return (
     <Dialog
@@ -21,7 +34,7 @@ export default ({ ball, open, onClose }) => {
       onClose={onClose}
     >
       <DialogTitle>
-        Edit Ball
+        {ball ? 'Edit Ball' : 'New Ball'}
       </DialogTitle>
       <DialogContent>
         <Grid container spacing={3}>
@@ -44,6 +57,7 @@ export default ({ ball, open, onClose }) => {
                 required: 'Distance metric is required.',
                 min: { value: 0, message: 'Minimum value is 0.' },
                 max: { value: 6, message: 'Maximum value is 6.' },
+                pattern: /^[0-6]((,|\.)[0-9])?$/,
               }}
               id={`distance-${id}`}
               defaultValue={distance}
@@ -58,18 +72,21 @@ export default ({ ball, open, onClose }) => {
                 required: 'Spin metric is required.',
                 min: { value: 0, message: 'Minimum value is 0.' },
                 max: { value: 4, message: 'Maximum value is 4.' },
+                pattern: /^[0-4]((,|\.)[0-9])?$/,
               }}
               id={`spin-${id}`}
               defaultValue={spin}
             />
           </Grid>
-          <Grid item xs={6} md={2}>
-            <IconButton>
-              <CheckIcon />
-            </IconButton>
-            <IconButton color="secondary">
-              <CloseIcon />
-            </IconButton>
+          <Grid container justify="flex-end" spacing={3}>
+            <Grid item>
+              <IconButton onClick={handleSubmit(submit)}>
+                <CheckIcon />
+              </IconButton>
+              <IconButton color="secondary" onClick={onClose}>
+                <CloseIcon />
+              </IconButton>
+            </Grid>
           </Grid>
         </Grid>
       </DialogContent>
