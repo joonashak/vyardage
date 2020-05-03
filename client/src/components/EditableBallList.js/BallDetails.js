@@ -2,11 +2,29 @@ import React, { useState } from 'react';
 import { Grid, Typography, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useStore } from 'react-hookstore';
 import BallPropertiesDialog from './BallPropertiesDialog';
+import { removeBall } from '../../services/ballService';
 
 
-export default ({ ball, upsertBall }) => {
+export default ({ ball, upsertBall, setBalls }) => {
   const [editing, setEditing] = useState(false);
+  const [, setNotification] = useStore('globalNotification');
+
+  const deleteBall = async () => {
+    const res = await removeBall(ball.id);
+
+    if (res.error) {
+      setNotification({
+        type: 'error',
+        message: `Removing ball failed: ${res.error.response && res.error.response.data.message}`,
+      });
+      return;
+    }
+
+    setNotification({ type: 'success', message: 'Ball removed!', autoHide: true });
+    setBalls((prev) => prev.filter((b) => b.id !== ball.id));
+  };
 
   return (
     <Grid container>
@@ -35,7 +53,7 @@ export default ({ ball, upsertBall }) => {
           <IconButton onClick={() => setEditing(true)}>
             <EditIcon />
           </IconButton>
-          <IconButton color="secondary">
+          <IconButton color="secondary" onClick={deleteBall}>
             <DeleteIcon />
           </IconButton>
         </Grid>
@@ -44,6 +62,7 @@ export default ({ ball, upsertBall }) => {
         ball={ball}
         open={editing}
         upsertBall={upsertBall}
+        setBalls={setBalls}
         onClose={() => setEditing(false)}
       />
     </Grid>

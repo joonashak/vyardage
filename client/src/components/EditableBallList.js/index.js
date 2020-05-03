@@ -31,13 +31,7 @@ export default ({ loaded }) => {
   };
 
   const updateBall = (ball) => {
-    console.log(ball);
-    setBalls((prev) => {
-      const asd = prev.filter((b) => b.id !== ball.id).concat([ball]);
-      console.log(ball.id);
-      console.log(asd);
-      return asd;
-    });
+    setBalls((prev) => prev.filter((b) => b.id !== ball.id).concat([ball]));
   };
 
   const sortedBalls = () => balls.sort((a, b) => a.name.localeCompare(b.name));
@@ -46,7 +40,7 @@ export default ({ loaded }) => {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <List style={{ width: '100%' }}>
-          {sortedBalls().map((ball) => <BallListItem ball={ball} upsertBall={updateBall} key={`ball-properties-${ball.id}`} />)}
+          {sortedBalls().map((ball) => <BallListItem ball={ball} upsertBall={updateBall} setBalls={setBalls} key={`ball-properties-${ball.id}`} />)}
         </List>
       </Grid>
       <Grid item xs={12}>

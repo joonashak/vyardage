@@ -38,3 +38,12 @@ export const updateBall = async (data) => {
     return { error };
   }
 };
+
+export const removeBall = async (id) => {
+  try {
+    const result = await api.remove('ball', { id });
+    return result.data;
+  } catch (error) {
+    return { error };
+  }
+};

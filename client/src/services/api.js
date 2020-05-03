@@ -14,4 +14,8 @@ const post = async (path, data) => axios.post(makeUrl(path), data, config());
 
 const put = async (path, data) => axios.put(makeUrl(path), data, config());
 
-export default { get, post, put };
+const remove = async (path, data) => axios.delete(makeUrl(path), { data, ...config() });
+
+export default {
+  get, post, put, remove,
+};
