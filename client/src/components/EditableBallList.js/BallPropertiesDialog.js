@@ -10,7 +10,9 @@ import ControlledInput from '../forms/ControlledInput';
 import { saveBall } from '../../services/ballService';
 
 
-export default ({ ball, open, onClose }) => {
+export default ({
+  ball, open, onClose, upsertBall,
+}) => {
   const {
     id, name, distance, spin,
   } = ball || {
@@ -37,7 +39,8 @@ export default ({ ball, open, onClose }) => {
     }
 
     setNotification({ type: 'success', message: 'Ball added!', autoHide: true });
-    onClose(res);
+    upsertBall(res);
+    onClose();
   };
 
   return (
@@ -69,7 +72,7 @@ export default ({ ball, open, onClose }) => {
                 required: 'Distance metric is required.',
                 min: { value: 0, message: 'Minimum value is 0.' },
                 max: { value: 6, message: 'Maximum value is 6.' },
-                pattern: /^[0-6]((,|\.)[0-9])?$/,
+                pattern: /^[0-6](\.[0-9])?$/,
               }}
               id={`distance-${id}`}
               defaultValue={distance}
@@ -84,7 +87,7 @@ export default ({ ball, open, onClose }) => {
                 required: 'Spin metric is required.',
                 min: { value: 0, message: 'Minimum value is 0.' },
                 max: { value: 4, message: 'Maximum value is 4.' },
-                pattern: /^[0-4]((,|\.)[0-9])?$/,
+                pattern: /^[0-4](\.[0-9])?$/,
               }}
               id={`spin-${id}`}
               defaultValue={spin}

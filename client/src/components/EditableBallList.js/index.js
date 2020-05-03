@@ -28,7 +28,6 @@ export default ({ loaded }) => {
       prev.push(ball);
       return prev;
     });
-    setDialog(false);
   };
 
   return (
@@ -51,7 +50,7 @@ export default ({ loaded }) => {
         >
           Add New Ball
         </Button>
-        <BallPropertiesDialog open={dialog} onClose={addBall} />
+        <BallPropertiesDialog open={dialog} upsertBall={addBall} onClose={() => setDialog(false)} />
       </Grid>
     </Grid>
   );
