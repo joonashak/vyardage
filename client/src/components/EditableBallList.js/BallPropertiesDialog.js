@@ -7,7 +7,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { useStore } from 'react-hookstore';
 import ControlledInput from '../forms/ControlledInput';
-import { saveBall } from '../../services/ballService';
+import { saveBall, updateBall } from '../../services/ballService';
 
 
 export default ({
@@ -24,21 +24,23 @@ export default ({
   const { handleSubmit } = formControl;
 
   const submit = async (data) => {
-    const res = await saveBall({
+    const newBall = {
       name: data.name,
       distance: data.distance * 1,
       spin: data.spin * 1,
-    });
+    };
+
+    const res = ball ? await updateBall({ id: ball.id, ...newBall }) : await saveBall(newBall);
 
     if (res.error) {
       setNotification({
         type: 'error',
-        message: `Adding ball failed: ${res.error.response && res.error.response.data.message}`,
+        message: `${ball ? 'Updating' : 'Adding'} ball failed: ${res.error.response && res.error.response.data.message}`,
       });
       return;
     }
 
-    setNotification({ type: 'success', message: 'Ball added!', autoHide: true });
+    setNotification({ type: 'success', message: `Ball ${ball ? 'updated' : 'added'}!`, autoHide: true });
     upsertBall(res);
     onClose();
   };

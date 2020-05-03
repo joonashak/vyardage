@@ -12,4 +12,6 @@ const get = async (path) => axios.get(makeUrl(path), config());
 
 const post = async (path, data) => axios.post(makeUrl(path), data, config());
 
-export default { get, post };
+const put = async (path, data) => axios.put(makeUrl(path), data, config());
+
+export default { get, post, put };

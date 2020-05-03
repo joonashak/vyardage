@@ -24,7 +24,8 @@ export default (router) => {
    */
   router.put('/api/v1/ball', authAdmin, async (req, res) => {
     const data = req.body;
-    res.send(await Ball.query().update(data).where('id', data.id).returning('*'));
+    const updatedRows = await Ball.query().update(data).where('id', data.id).returning('*');
+    res.send(updatedRows[0]);
   });
 
   /**

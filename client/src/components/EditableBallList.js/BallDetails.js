@@ -5,7 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import BallPropertiesDialog from './BallPropertiesDialog';
 
 
-export default ({ ball }) => {
+export default ({ ball, upsertBall }) => {
   const [editing, setEditing] = useState(false);
 
   return (
@@ -40,7 +40,12 @@ export default ({ ball }) => {
           </IconButton>
         </Grid>
       </Grid>
-      <BallPropertiesDialog ball={ball} open={editing} onClose={() => setEditing(false)} />
+      <BallPropertiesDialog
+        ball={ball}
+        open={editing}
+        upsertBall={upsertBall}
+        onClose={() => setEditing(false)}
+      />
     </Grid>
   );
 };

@@ -25,3 +25,16 @@ export const saveBall = async (data) => {
     return { error };
   }
 };
+
+/**
+ * Update a ball and return it.
+ * @param {} data Ball data, all fields must be supplied.
+ */
+export const updateBall = async (data) => {
+  try {
+    const result = await api.put('ball', data);
+    return result.data;
+  } catch (error) {
+    return { error };
+  }
+};
