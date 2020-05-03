@@ -16,7 +16,7 @@ export default (router) => {
    */
   router.post('/api/v1/ball', authAdmin, async (req, res) => {
     const data = addId(req);
-    res.send(await Ball.query().insert(data).returning('*'));
+    res.status(201).send(await Ball.query().insert(data).returning('*'));
   });
 
   /**
@@ -25,5 +25,14 @@ export default (router) => {
   router.put('/api/v1/ball', authAdmin, async (req, res) => {
     const data = req.body;
     res.send(await Ball.query().update(data).where('id', data.id).returning('*'));
+  });
+
+  /**
+   * Delete a ball.
+   */
+  router.delete('/api/v1/ball', authAdmin, async (req, res) => {
+    const { id } = req.body;
+    const rows = await Ball.query().deleteById(id);
+    res.sendStatus(rows === 0 ? 404 : 200);
   });
 };

@@ -323,6 +323,27 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Ball'
+    delete:
+      summary: Delete Ball
+      operationId: delete-api-v1-ball
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  description: ID of the ball to be deleted.
+              required:
+                - id
+      description: Delete the ball specified by the `id` field in payload.
   /api/v1/club:
     post:
       summary: Create Club
