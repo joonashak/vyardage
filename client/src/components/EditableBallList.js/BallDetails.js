@@ -8,6 +8,7 @@ import { removeBall } from '../../services/ballService';
 
 
 export default ({ ball, upsertBall, setBalls }) => {
+  // TODO: Add confirmation to delete.
   const [editing, setEditing] = useState(false);
   const [, setNotification] = useStore('globalNotification');
 

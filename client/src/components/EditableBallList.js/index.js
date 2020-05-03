@@ -23,24 +23,13 @@ export default ({ loaded }) => {
     asyncFetch();
   }, []);
 
-  const addBall = (ball) => {
-    setBalls((prev) => {
-      prev.push(ball);
-      return prev;
-    });
-  };
-
-  const updateBall = (ball) => {
-    setBalls((prev) => prev.filter((b) => b.id !== ball.id).concat([ball]));
-  };
-
   const sortedBalls = () => balls.sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <List style={{ width: '100%' }}>
-          {sortedBalls().map((ball) => <BallListItem ball={ball} upsertBall={updateBall} setBalls={setBalls} key={`ball-properties-${ball.id}`} />)}
+          {sortedBalls().map((ball) => <BallListItem ball={ball} setBalls={setBalls} key={`ball-properties-${ball.id}`} />)}
         </List>
       </Grid>
       <Grid item xs={12}>
@@ -56,7 +45,7 @@ export default ({ loaded }) => {
         >
           Add New Ball
         </Button>
-        <BallPropertiesDialog open={dialog} upsertBall={addBall} onClose={() => setDialog(false)} />
+        <BallPropertiesDialog open={dialog} setBalls={setBalls} onClose={() => setDialog(false)} />
       </Grid>
     </Grid>
   );

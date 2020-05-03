@@ -11,7 +11,7 @@ import { saveBall, updateBall } from '../../services/ballService';
 
 
 export default ({
-  ball, open, onClose, upsertBall,
+  ball, open, onClose, setBalls,
 }) => {
   const {
     id, name, distance, spin,
@@ -30,7 +30,9 @@ export default ({
       spin: data.spin * 1,
     };
 
-    const res = ball ? await updateBall({ id: ball.id, ...newBall }) : await saveBall(newBall);
+    const newBallWithId = { id: ball.id, ...newBall };
+
+    const res = ball ? await updateBall(newBallWithId) : await saveBall(newBall);
 
     if (res.error) {
       setNotification({
@@ -41,7 +43,16 @@ export default ({
     }
 
     setNotification({ type: 'success', message: `Ball ${ball ? 'updated' : 'added'}!`, autoHide: true });
-    upsertBall(res);
+
+    if (ball) {
+      setBalls((prev) => prev.filter((b) => b.id !== ball.id).concat([newBallWithId]));
+    } else {
+      setBalls((prev) => {
+        prev.push(newBall);
+        return prev;
+      });
+    }
+
     onClose();
   };
 
