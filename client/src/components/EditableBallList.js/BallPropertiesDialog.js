@@ -37,7 +37,7 @@ export default ({ ball, open, onClose }) => {
     }
 
     setNotification({ type: 'success', message: 'Ball added!', autoHide: true });
-    onClose();
+    onClose(res);
   };
 
   return (
