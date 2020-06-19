@@ -24,4 +24,5 @@ Pvm|Tunnit|Mitä tein
 26.4.|2|Frontin refaktorointi ja UX:n parantelu.
 2.5.|6|Lisää testejä, asetusvalikon kehittämistä fronttiin ja paaaaljon debuggausta.
 3.5.|5|Pallojen lisäys, muokkaus ja poistaminen backiin ja fronttiin.
-**YHT.**|89|
+19.6.|1|Debuggaus, kanban-taulun alkuun laittaminen Githubissa.
+**YHT.**|90|
