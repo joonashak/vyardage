@@ -30,9 +30,7 @@ export default ({
       spin: data.spin * 1,
     };
 
-    const newBallWithId = { id: ball.id, ...newBall };
-
-    const res = ball ? await updateBall(newBallWithId) : await saveBall(newBall);
+    const res = ball ? await updateBall({ id, newBall }) : await saveBall(newBall);
 
     if (res.error) {
       setNotification({
@@ -45,7 +43,7 @@ export default ({
     setNotification({ type: 'success', message: `Ball ${ball ? 'updated' : 'added'}!`, autoHide: true });
 
     if (ball) {
-      setBalls((prev) => prev.filter((b) => b.id !== ball.id).concat([newBallWithId]));
+      setBalls((prev) => prev.filter((b) => b.id !== ball.id).concat([{ id, newBall }]));
     } else {
       setBalls((prev) => {
         prev.push(newBall);
