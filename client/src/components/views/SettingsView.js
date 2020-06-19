@@ -5,11 +5,12 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ViewWrapper from './ViewWrapper';
 import LoadingIndicator from '../misc/LoadingIndicator';
-import EditableBallList from '../EditableBallList.js';
+import EditableBallList from '../EditableBallList';
+import EditableClubList from '../EditableClubList';
 
 
 export default () => {
-  const [isLoaded, setLoaded] = useState({ balls: false });
+  const [isLoaded, setLoaded] = useState({ balls: false, clubs: false });
 
   const loaded = (key) => {
     setLoaded((prev) => ({ ...prev, [key]: true }));
@@ -25,7 +26,7 @@ export default () => {
         </Grid>
 
         <Grid item xs={12}>
-          <ExpansionPanel expanded>
+          <ExpansionPanel>
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="ball-list"
@@ -41,9 +42,19 @@ export default () => {
         </Grid>
 
         <Grid item xs={12}>
-          <Typography variant="h6" gutterBottom>
-            Clubs
-          </Typography>
+          <ExpansionPanel expanded>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="club-list"
+            >
+              <Typography variant="h6" gutterBottom>
+                Clubs
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <EditableClubList loaded={() => loaded('clubs')} />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
         </Grid>
       </Grid>
 
