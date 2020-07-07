@@ -2,28 +2,25 @@ import React, { useState } from 'react';
 import { Grid, Typography, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useStore } from 'react-hookstore';
 import BallPropertiesDialog from './BallPropertiesDialog';
 import { removeBall } from '../../services/ballService';
+import useNotification from '../GlobalNotification/useNotification';
 
 
 export default ({ ball, upsertBall, setBalls }) => {
   // TODO: Add confirmation to delete.
   const [editing, setEditing] = useState(false);
-  const [, setNotification] = useStore('globalNotification');
+  const { setNotification } = useNotification();
 
   const deleteBall = async () => {
     const res = await removeBall(ball.id);
 
     if (res.error) {
-      setNotification({
-        type: 'error',
-        message: `Removing ball failed: ${res.error.response && res.error.response.data.message}`,
-      });
+      setNotification(`Removing ball failed: ${res.error.response && res.error.response.data.message}`, 'error');
       return;
     }
 
-    setNotification({ type: 'success', message: 'Ball removed!', autoHide: true });
+    setNotification('Ball removed!', 'success', true);
     setBalls((prev) => prev.filter((b) => b.id !== ball.id));
   };
 

@@ -11,6 +11,7 @@ import { checkSession } from './services/loginService';
 import Logout from './components/authentication/Logout';
 import GameView from './components/views/GameView';
 import SettingsView from './components/views/SettingsView';
+import CombinedContext from './CombinedContext';
 
 
 createStore('loggedIn', false);
@@ -37,20 +38,22 @@ export default () => {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <CssBaseline />
+    <CombinedContext>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <CssBaseline />
 
-        <Switch>
-          <Route path="/login" exact component={LoginView} />
-          <Route path="/logout" exact component={Logout} />
-          <Route path="/play" exact component={GameView} />
-          <Route path="/settings" exact component={SettingsView} />
-          <Route path="/" component={HomeView} />
-        </Switch>
+          <Switch>
+            <Route path="/login" exact component={LoginView} />
+            <Route path="/logout" exact component={Logout} />
+            <Route path="/play" exact component={GameView} />
+            <Route path="/settings" exact component={SettingsView} />
+            <Route path="/" component={HomeView} />
+          </Switch>
 
-        <GlobalNotification />
-      </BrowserRouter>
-    </ThemeProvider>
+          <GlobalNotification />
+        </BrowserRouter>
+      </ThemeProvider>
+    </CombinedContext>
   );
 };

@@ -4,19 +4,19 @@ import {
   Button, Grid, MenuItem, Typography,
 } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
-import { useStore } from 'react-hookstore';
 import { save as saveShot } from '../../services/shotService';
 import ControlledInput from './ControlledInput';
 import EnvironmentInput from './EnvironmentInput';
 import SwingInput from './SwingInput';
 import SelectEquipment from './SelectEquipment';
+import useNotification from '../GlobalNotification/useNotification';
 
 
 export default ({ gameData }) => {
   const [equipment, setEquipment] = useState(gameData.savedEquipment);
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit, errors, setValue } = formControl;
-  const [, setNotification] = useStore('globalNotification');
+  const { setNotification } = useNotification();
   const scrollRef = React.createRef();
 
   const clearForm = () => {
@@ -42,14 +42,11 @@ export default ({ gameData }) => {
     const res = await saveShot(shot);
 
     if (res.error) {
-      setNotification({
-        type: 'error',
-        message: `Shot entry failed: ${res.error.response && res.error.response.data.message}`,
-      });
+      setNotification(`Shot entry failed: ${res.error.response && res.error.response.data.message}`, 'error');
       return;
     }
 
-    setNotification({ type: 'success', message: 'Shot recorded!', autoHide: true });
+    setNotification('Shot recorded!', 'success', true);
     clearForm();
   };
 

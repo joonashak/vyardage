@@ -7,13 +7,14 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import { useStore } from 'react-hookstore';
 import { login } from '../../services/loginService';
 import ControlledInput from '../forms/ControlledInput';
+import useNotification from '../GlobalNotification/useNotification';
 
 
 export default () => {
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit, errors, register } = formControl;
   const [, setLoggedIn] = useStore('loggedIn');
-  const [, setNotification] = useStore('globalNotification');
+  const { setNotification } = useNotification();
 
   const submit = async (data) => {
     if (Object.keys(errors).length > 0) {
@@ -23,16 +24,13 @@ export default () => {
     const res = await login(data);
 
     if (res.error) {
-      setNotification({
-        type: 'error',
-        message: `Login failed: ${res.error.response.data.message}`,
-      });
+      setNotification(`Login failed: ${res.error.response.data.message}`, 'error');
 
       return;
     }
 
     setLoggedIn(true);
-    setNotification({ type: 'success', message: 'You were logged in!', autoHide: true });
+    setNotification('You were logged in!', 'success', true);
   };
 
   return (

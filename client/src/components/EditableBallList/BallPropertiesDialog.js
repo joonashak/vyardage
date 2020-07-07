@@ -5,9 +5,9 @@ import {
 } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import { useStore } from 'react-hookstore';
 import ControlledInput from '../forms/ControlledInput';
 import { saveBall, updateBall } from '../../services/ballService';
+import useNotification from '../GlobalNotification/useNotification';
 
 
 export default ({
@@ -19,7 +19,7 @@ export default ({
     id: '', name: '', distance: '', spin: '',
   };
 
-  const [, setNotification] = useStore('globalNotification');
+  const { setNotification } = useNotification();
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit } = formControl;
 
@@ -33,14 +33,14 @@ export default ({
     const res = ball ? await updateBall({ id, newBall }) : await saveBall(newBall);
 
     if (res.error) {
-      setNotification({
-        type: 'error',
-        message: `${ball ? 'Updating' : 'Adding'} ball failed: ${res.error.response && res.error.response.data.message}`,
-      });
+      setNotification(
+        `${ball ? 'Updating' : 'Adding'} ball failed: ${res.error.response && res.error.response.data.message}`,
+        'error',
+      );
       return;
     }
 
-    setNotification({ type: 'success', message: `Ball ${ball ? 'updated' : 'added'}!`, autoHide: true });
+    setNotification(`Ball ${ball ? 'updated' : 'added'}!`, 'success', true);
 
     if (ball) {
       setBalls((prev) => prev.filter((b) => b.id !== ball.id).concat([{ id, newBall }]));
