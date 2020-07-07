@@ -2,13 +2,13 @@ import React from 'react';
 import {
   Grid, Container, Typography, useTheme,
 } from '@material-ui/core';
-import { useStore } from 'react-hookstore';
 import LoginButton from './LoginButton';
 import Menu from './Menu';
+import useAuthentication from '../authentication/useAuthentication';
 
 
 export default () => {
-  const [loggedIn] = useStore('loggedIn');
+  const { loggedIn } = useAuthentication();
 
   const theme = useTheme();
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Typography, Link, Grid } from '@material-ui/core';
-import { useStore } from 'react-hookstore';
 import { Link as RouterLink } from 'react-router-dom';
 import ViewWrapper from './ViewWrapper';
+import useAuthentication from '../authentication/useAuthentication';
 
 
 export default () => {
-  const [loggedIn] = useStore('loggedIn');
+  const { loggedIn } = useAuthentication();
 
   return (
     <ViewWrapper>

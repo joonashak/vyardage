@@ -1,9 +1,12 @@
 import React from 'react';
 import { NotificationProvider } from './components/GlobalNotification/useNotification';
+import { AuthenticationProvider } from './components/authentication/useAuthentication';
 
 
 export default ({ children }) => (
-  <NotificationProvider>
-    {children}
-  </NotificationProvider>
+  <AuthenticationProvider>
+    <NotificationProvider>
+      {children}
+    </NotificationProvider>
+  </AuthenticationProvider>
 );

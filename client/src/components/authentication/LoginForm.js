@@ -4,16 +4,16 @@ import {
   Button, Grid, Typography, FormControlLabel, Checkbox,
 } from '@material-ui/core';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
-import { useStore } from 'react-hookstore';
 import { login } from '../../services/loginService';
 import ControlledInput from '../forms/ControlledInput';
 import useNotification from '../GlobalNotification/useNotification';
+import useAuthentication from './useAuthentication';
 
 
 export default () => {
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit, errors, register } = formControl;
-  const [, setLoggedIn] = useStore('loggedIn');
+  const { setLoggedIn } = useAuthentication();
   const { setNotification } = useNotification();
 
   const submit = async (data) => {

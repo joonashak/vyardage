@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useStore } from 'react-hookstore';
 import { Redirect } from 'react-router-dom';
 import { logout } from '../../services/loginService';
+import useAuthentication from './useAuthentication';
 
 
 export default () => {
-  const [, setLoggedIn] = useStore('loggedIn');
+  const { setLoggedIn } = useAuthentication();
 
   useEffect(() => {
     const asyncLogout = async () => {

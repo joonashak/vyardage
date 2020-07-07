@@ -1,13 +1,13 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
-import { useStore } from 'react-hookstore';
 import { Redirect } from 'react-router-dom';
 import ViewWrapper from './ViewWrapper';
 import LoginForm from '../authentication/LoginForm';
+import useAuthentication from '../authentication/useAuthentication';
 
 
 export default () => {
-  const [loggedIn] = useStore('loggedIn');
+  const { loggedIn } = useAuthentication();
 
   return loggedIn ? (<Redirect to="/" />) : (
     <ViewWrapper>
