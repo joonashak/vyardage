@@ -42,7 +42,7 @@ export default () => (
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <EditableClubList loaded={() => {}} />
+          <EditableClubList />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </Grid>

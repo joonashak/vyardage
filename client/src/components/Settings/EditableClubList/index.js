@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  List, useTheme, useMediaQuery, Button, Grid,
+  useTheme, useMediaQuery, Button, Grid,
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { getClubTypes } from '../../../services/clubService';
+import useData from '../../../context/useData';
+import ClubTypePanel from './ClubTypePanel';
 
 
-export default ({ loaded }) => {
-  const [clubTypes, setClubTypes] = useState([]);
+export default () => {
+  const { clubTypes, clubs } = useData();
   const [dialog, setDialog] = useState(false);
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  useEffect(() => {
-    const asyncFetch = async () => {
-      setClubTypes(await getClubTypes());
-      loaded();
-    };
-
-    asyncFetch();
-  }, []);
-
   return (
     <Grid container spacing={3}>
       {clubTypes.map((clubType) => (
-        <Grid item xs={12} md={6}>
-          {clubType}
+        <Grid item xs={12} md={6} key={`${clubType}-panel`}>
+          <ClubTypePanel
+            clubType={clubType}
+            clubs={clubs.filter((club) => club.clubType === clubType)}
+          />
         </Grid>
       ))}
       <Grid item xs={12}>
