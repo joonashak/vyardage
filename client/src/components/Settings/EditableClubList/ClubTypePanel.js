@@ -12,7 +12,7 @@ export default ({ clubType, clubs }) => (
       aria-controls={`${clubType}-list`}
     >
       <Typography variant="body1">
-        {clubType}
+        {clubType}s
       </Typography>
     </ExpansionPanelSummary>
     <ExpansionPanelDetails>
