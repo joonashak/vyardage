@@ -34,7 +34,7 @@ const router = promiseRouter();
 
 app
   // Timeout for testing:
-  .use((req, res, next) => setTimeout(next, 1000))
+  // .use((req, res, next) => setTimeout(next, 1000))
   .use(morgan(logFormat))
   .use(session({
     store: new (knexSession(session))({ knex }),
