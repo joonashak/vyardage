@@ -6,6 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CloseIcon from '@material-ui/icons/Close';
 import SelectClubs from './SelectClubs';
 import SelectBall from './SelectBall';
+import useData from '../../../context/useData';
 
 
 const useStyles = makeStyles(() => ({
@@ -14,11 +15,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default ({ gameData, equipment, setEquipment }) => {
+export default () => {
   const classes = useStyles();
+  const { clubTypes, equipment } = useData();
 
   const selectionOk = () => {
-    const selectedClubs = gameData.clubTypes.map((type) => equipment[type]);
+    const selectedClubs = clubTypes.map((type) => equipment[type]);
     return equipment.ball && selectedClubs.find((club) => !!club);
   };
 
@@ -60,8 +62,8 @@ export default ({ gameData, equipment, setEquipment }) => {
               </Typography>
             </Grid>
 
-            <SelectBall balls={gameData.balls} equipment={equipment} setEquipment={setEquipment} />
-            <SelectClubs gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
+            <SelectBall />
+            <SelectClubs />
 
             <Grid item xs={false} md={6} />
             <Grid item xs={false} md={8} />

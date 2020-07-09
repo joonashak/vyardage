@@ -5,20 +5,20 @@ import {
 } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import ControlledInput from '../forms/ControlledInput';
-import { saveBall, updateBall } from '../../services/ballService';
-import useNotification from '../GlobalNotification/useNotification';
+import ControlledInput from '../../forms/ControlledInput';
+import useNotification from '../../GlobalNotification/useNotification';
+import useData from '../../../context/useData';
 
 
-export default ({
-  ball, open, onClose, setBalls,
-}) => {
+export default ({ ball, open, onClose }) => {
+  // FIXME: Refactor this shit.
   const {
     id, name, distance, spin,
   } = ball || {
     id: '', name: '', distance: '', spin: '',
   };
 
+  const { upsertBall } = useData();
   const { setNotification } = useNotification();
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit } = formControl;
@@ -30,28 +30,16 @@ export default ({
       spin: data.spin * 1,
     };
 
-    const res = ball ? await updateBall({ id, newBall }) : await saveBall(newBall);
-
-    if (res.error) {
+    try {
+      await upsertBall({ id, ...newBall });
+      setNotification(`Ball ${ball ? 'updated' : 'added'}!`, 'success', true);
+      onClose();
+    } catch (error) {
       setNotification(
-        `${ball ? 'Updating' : 'Adding'} ball failed: ${res.error.response && res.error.response.data.message}`,
+        `${ball ? 'Updating' : 'Adding'} ball failed: ${error.response && error.response.data.message}`,
         'error',
       );
-      return;
     }
-
-    setNotification(`Ball ${ball ? 'updated' : 'added'}!`, 'success', true);
-
-    if (ball) {
-      setBalls((prev) => prev.filter((b) => b.id !== ball.id).concat([{ id, newBall }]));
-    } else {
-      setBalls((prev) => {
-        prev.push(newBall);
-        return prev;
-      });
-    }
-
-    onClose();
   };
 
   return (

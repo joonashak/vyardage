@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import {
   Button, Grid, MenuItem, Typography,
@@ -10,10 +10,11 @@ import EnvironmentInput from './EnvironmentInput';
 import SwingInput from './SwingInput';
 import SelectEquipment from './SelectEquipment';
 import useNotification from '../GlobalNotification/useNotification';
+import useData from '../../context/useData';
 
 
-export default ({ gameData }) => {
-  const [equipment, setEquipment] = useState(gameData.savedEquipment);
+export default () => {
+  const { clubTypes, equipment } = useData();
   const formControl = useForm({ mode: 'onBlur' });
   const { handleSubmit, errors, setValue } = formControl;
   const { setNotification } = useNotification();
@@ -54,13 +55,13 @@ export default ({ gameData }) => {
    * Get active clubs in the enumeration order.
    */
   const getActiveClubs = () => {
-    const activeKeys = gameData.clubTypes.filter((clubType) => equipment[clubType]);
+    const activeKeys = clubTypes.filter((clubType) => equipment[clubType]);
     return activeKeys.map((clubType) => equipment[clubType]);
   };
 
   return (
     <Grid container spacing={2} alignItems="center">
-      <SelectEquipment gameData={gameData} equipment={equipment} setEquipment={setEquipment} />
+      <SelectEquipment />
 
       <Grid item xs={12}>
         <Typography variant="h6" innerRef={scrollRef}>

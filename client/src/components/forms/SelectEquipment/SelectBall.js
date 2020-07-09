@@ -1,12 +1,14 @@
 import React from 'react';
 import { Grid, Typography, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
+import useData from '../../../context/useData';
 
 
-export default ({ balls, equipment, setEquipment }) => {
+export default () => {
+  const { balls, equipment, setEquipment } = useData();
   const setBall = (ball) => {
     localStorage.setItem('vyardage.equipment.ballId', ball.id);
-    setEquipment((prev) => ({ ...prev, ball }));
+    setEquipment({ ball });
   };
 
   return (

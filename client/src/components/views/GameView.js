@@ -1,48 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ViewWrapper from './ViewWrapper';
-import { getClubs, getClubTypes } from '../../services/clubService';
 import LoadingIndicator from '../misc/LoadingIndicator';
-import { getBalls } from '../../services/ballService';
 import RegisterShot from '../forms/RegisterShot';
+import useData from '../../context/useData';
 
 
 export default () => {
-  const [gameData, setGameData] = useState({});
-  const [isLoaded, setLoaded] = useState(false);
+  const { loading, loadData } = useData();
 
   useEffect(() => {
-    const asyncFetch = async () => {
-      // Fetch game data from the API.
-      const clubs = await getClubs();
-      const clubTypes = await getClubTypes();
-      const balls = await getBalls();
-
-      // Read past equipment selections from browser local storage.
-      const equipment = {};
-      const ballId = localStorage.getItem('vyardage.equipment.ballId');
-      equipment.ball = balls.find((b) => b.id === ballId);
-
-      clubTypes.forEach((clubType) => {
-        const clubId = localStorage.getItem(`vyardage.equipment.${clubType}`);
-        equipment[clubType] = clubs.find((c) => c.id === clubId);
-      });
-
-      setGameData({
-        clubs,
-        clubTypes,
-        balls,
-        savedEquipment: equipment,
-      });
-
-      setLoaded(true);
-    };
-    asyncFetch();
-  }, []);
+    (async () => loadData())();
+  }, [loadData]);
 
   return (
     <ViewWrapper>
-      {isLoaded
-        ? <RegisterShot gameData={gameData} />
+      {!loading
+        ? (
+          <RegisterShot />
+        )
         : (
           <ViewWrapper>
             <LoadingIndicator text="Loading game data..." />

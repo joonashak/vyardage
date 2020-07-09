@@ -3,25 +3,23 @@ import { Grid, Typography, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BallPropertiesDialog from './BallPropertiesDialog';
-import { removeBall } from '../../services/ballService';
-import useNotification from '../GlobalNotification/useNotification';
+import useNotification from '../../GlobalNotification/useNotification';
+import useData from '../../../context/useData';
 
 
-export default ({ ball, upsertBall, setBalls }) => {
+export default ({ ball }) => {
   // TODO: Add confirmation to delete.
   const [editing, setEditing] = useState(false);
+  const { deleteBall } = useData();
   const { setNotification } = useNotification();
 
-  const deleteBall = async () => {
-    const res = await removeBall(ball.id);
-
-    if (res.error) {
-      setNotification(`Removing ball failed: ${res.error.response && res.error.response.data.message}`, 'error');
-      return;
+  const remove = async () => {
+    try {
+      await deleteBall(ball);
+      setNotification('Ball removed!', 'success', true);
+    } catch (error) {
+      setNotification(`Removing ball failed: ${error.response && error.response.data.message}`, 'error');
     }
-
-    setNotification('Ball removed!', 'success', true);
-    setBalls((prev) => prev.filter((b) => b.id !== ball.id));
   };
 
   return (
@@ -51,7 +49,7 @@ export default ({ ball, upsertBall, setBalls }) => {
           <IconButton onClick={() => setEditing(true)}>
             <EditIcon />
           </IconButton>
-          <IconButton color="secondary" onClick={deleteBall}>
+          <IconButton color="secondary" onClick={remove}>
             <DeleteIcon />
           </IconButton>
         </Grid>
@@ -59,8 +57,6 @@ export default ({ ball, upsertBall, setBalls }) => {
       <BallPropertiesDialog
         ball={ball}
         open={editing}
-        upsertBall={upsertBall}
-        setBalls={setBalls}
         onClose={() => setEditing(false)}
       />
     </Grid>

@@ -1,14 +1,17 @@
 import React from 'react';
 import { Grid, Typography, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
+import useData from '../../../context/useData';
 
 
-export default ({ gameData, equipment, setEquipment }) => {
-  const { clubTypes, clubs } = gameData;
+export default () => {
+  const {
+    clubTypes, clubs, equipment, setEquipment,
+  } = useData();
 
   const setClub = (club) => {
     localStorage.setItem(`vyardage.equipment.${club.clubType}`, club.id);
-    setEquipment((prev) => ({ ...prev, [club.clubType]: club }));
+    setEquipment({ [club.clubType]: club });
   };
 
   return (

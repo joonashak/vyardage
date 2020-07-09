@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BallDetails from './BallDetails';
 
 
-export default ({ ball, upsertBall, setBalls }) => (
+export default ({ ball }) => (
   <ExpansionPanel>
     <ExpansionPanelSummary
       expandIcon={<ExpandMoreIcon />}
@@ -17,7 +17,7 @@ export default ({ ball, upsertBall, setBalls }) => (
       </Typography>
     </ExpansionPanelSummary>
     <ExpansionPanelDetails>
-      <BallDetails ball={ball} upsertBall={upsertBall} setBalls={setBalls} />
+      <BallDetails ball={ball} />
     </ExpansionPanelDetails>
   </ExpansionPanel>
 );
