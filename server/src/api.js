@@ -8,10 +8,10 @@ import club from './controllers/club';
 import shot from './controllers/shot';
 
 
-export default (router) => {
+export default (router, knex) => {
   login(router);
   user(router);
   ball(router);
-  club(router);
+  club(router, knex);
   shot(router);
 };

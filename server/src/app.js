@@ -49,7 +49,7 @@ app
   .use(errorHandler);
 
 // Register controllers providing API endpoints
-apiController(router);
+apiController(router, knex);
 
 // Database seeding utility for development and testing.
 if (process.env.NODE_ENV !== 'production') {

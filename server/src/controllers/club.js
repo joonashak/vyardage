@@ -1,10 +1,9 @@
 import Club from '../models/Club';
 import { auth, authAdmin } from '../middlewares/authentication';
 import addId from '../utils/addId';
-import { knex } from '../app';
 
 
-export default (router) => {
+export default (router, knex) => {
   /**
    * Get all clubs.
    */
