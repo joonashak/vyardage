@@ -3,7 +3,8 @@ import {
   ListItem, ListItemText, ListItemSecondaryAction, IconButton, ListItemIcon, makeStyles,
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import ConfirmableDeleteIconButton from '../../forms/ConfirmableDeleteIconButton';
+import useData from '../../../context/useData';
 
 
 const useStyles = makeStyles(() => ({
@@ -14,6 +15,7 @@ const useStyles = makeStyles(() => ({
 
 export default ({ club }) => {
   const classes = useStyles();
+  const { deleteClub } = useData();
 
   return (
     <ListItem classes={classes}>
@@ -24,9 +26,7 @@ export default ({ club }) => {
       </ListItemIcon>
       <ListItemText primary={club.name} />
       <ListItemSecondaryAction>
-        <IconButton color="secondary" aria-label="delete">
-          <DeleteIcon />
-        </IconButton>
+        <ConfirmableDeleteIconButton name={club.name} onRemove={() => deleteClub(club)} />
       </ListItemSecondaryAction>
     </ListItem>
   );

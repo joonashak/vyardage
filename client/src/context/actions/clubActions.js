@@ -2,10 +2,10 @@ import { updateClub, saveClub, removeClub } from '../../services/clubService';
 
 
 export default (state, setState) => {
-  const upsertClub = async (ball) => {
-    const { id, ...newBall } = ball;
+  const upsertClub = async (club) => {
+    const { id, ...newClub } = club;
     const res = state.clubs.find((b) => b.id === id)
-      ? await updateClub({ id, ...newBall }) : await saveClub(newBall);
+      ? await updateClub({ id, ...newClub }) : await saveClub(newClub);
 
     if (res.error) {
       throw res.error;
@@ -19,14 +19,14 @@ export default (state, setState) => {
     return res;
   };
 
-  const deleteClub = async (ball) => {
-    const res = await removeClub(ball.id);
+  const deleteClub = async (club) => {
+    const res = await removeClub(club.id);
 
     if (res.error) {
       throw res.error;
     }
 
-    setState((prev) => ({ ...prev, clubs: prev.clubs.filter((b) => b.id !== ball.id) }));
+    setState((prev) => ({ ...prev, clubs: prev.clubs.filter((b) => b.id !== club.id) }));
   };
 
   const { clubs, clubTypes } = state;
