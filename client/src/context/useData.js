@@ -4,6 +4,7 @@ import React, {
 import { getBalls } from '../services/ballService';
 import { getClubTypes, getClubs } from '../services/clubService';
 import ballActions from './actions/ballActions';
+import clubActions from './actions/clubActions';
 
 
 const defaultState = {
@@ -57,15 +58,12 @@ export default () => {
     });
   }, [setState]);
 
-  const {
-    loading, clubs, clubTypes, equipment,
-  } = state;
+  const { loading, equipment } = state;
 
   return {
     ...ballActions(state, setState),
+    ...clubActions(state, setState),
     loading,
-    clubs,
-    clubTypes,
     equipment,
     loadData,
     setEquipment,
