@@ -26,9 +26,13 @@ export default ({ clubType, clubs }) => {
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <List classes={classes}>
-          {clubs.map((club) => <ClubListItem club={club} key={club.id} />)}
-        </List>
+        {clubs.length
+          ? (
+            <List classes={classes}>
+              {clubs.map((club) => <ClubListItem club={club} key={club.id} />)}
+            </List>
+          )
+          : `No ${clubType.toLowerCase()}s found.`}
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );

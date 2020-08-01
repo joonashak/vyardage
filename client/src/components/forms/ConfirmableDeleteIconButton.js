@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 
 export default ({ onRemove, name }) => {
-  const [open, setOpen] = useState();
+  const [open, setOpen] = useState(false);
 
   const remove = () => {
     onRemove();
