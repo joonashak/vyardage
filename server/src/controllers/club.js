@@ -20,6 +20,24 @@ export default (router, knex) => {
   });
 
   /**
+   * Update a club.
+   */
+  router.put('/api/v1/club', authAdmin, async (req, res) => {
+    const data = req.body;
+    const updatedRows = await Club.query().update(data).where('id', data.id).returning('*');
+    res.send(updatedRows[0]);
+  });
+
+  /**
+   * Delete a club.
+   */
+  router.delete('/api/v1/club', authAdmin, async (req, res) => {
+    const { id } = req.body;
+    const rows = await Club.query().deleteById(id);
+    res.sendStatus(rows === 0 ? 404 : 200);
+  });
+
+  /**
    * Get all possible club types (i.e., CLUB_TYPE enumeration).
    */
   router.get('/api/v1/clubTypes', auth, async (req, res) => {

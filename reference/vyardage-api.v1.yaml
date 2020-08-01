@@ -363,6 +363,45 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Club'
+    put:
+      summary: Update Club
+      operationId: put-api-v1-club
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Club'
+      description: |-
+        Updates the club specified by the `id` field in payload. The club's ID cannot be changed.
+
+        Returns the updated object.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Club'
+    delete:
+      summary: Delete Club
+      operationId: delete-api-v1-club
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      description: Delete the club specified by the `id` field in payload.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+              required:
+                - id
   /api/v1/shot:
     post:
       summary: Save Shot
