@@ -52,7 +52,7 @@ export default ({ clubType }) => {
         startIcon={<AddCircleIcon />}
         onClick={() => setOpen(true)}
         fullWidth
-        data-cy="add-club-button"
+        data-cy={`add-${clubType}`}
       >
         {`Add ${clubType}`}
       </Button>
@@ -77,7 +77,7 @@ export default ({ clubType }) => {
             </Grid>
             <Grid container justify="flex-end" spacing={3}>
               <Grid item>
-                <IconButton onClick={handleSubmit(submit)}>
+                <IconButton onClick={handleSubmit(submit)} data-cy="submit">
                   <CheckIcon />
                 </IconButton>
                 <IconButton color="secondary" onClick={() => setOpen(false)}>

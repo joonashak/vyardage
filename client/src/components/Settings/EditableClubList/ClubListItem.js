@@ -36,14 +36,14 @@ export default ({ club }) => {
   ) : (
     <ListItem classes={classes} onClick={toggleEditable}>
       <ListItemIcon>
-        <IconButton>
+        <IconButton data-cy={`edit-${club.name}`}>
           <EditIcon />
         </IconButton>
       </ListItemIcon>
       <ListItemText>
         {club.name}
       </ListItemText>
-      <ListItemSecondaryAction>
+      <ListItemSecondaryAction data-cy={`delete-${club.name}`}>
         <ConfirmableDeleteIconButton name={club.name} onRemove={onRemove} />
       </ListItemSecondaryAction>
     </ListItem>

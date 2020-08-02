@@ -38,7 +38,7 @@ export default ({ club, toggleEditable }) => {
   return (
     <ListItem classes={classes}>
       <ListItemIcon>
-        <IconButton onClick={handleSubmit(submit)}>
+        <IconButton onClick={handleSubmit(submit)} data-cy="submit">
           <CheckIcon />
         </IconButton>
       </ListItemIcon>

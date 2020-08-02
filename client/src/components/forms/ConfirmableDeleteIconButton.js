@@ -33,7 +33,7 @@ export default ({ onRemove, name }) => {
           <Button onClick={() => setOpen(false)} color="primary">
             Cancel
           </Button>
-          <Button onClick={remove} color="secondary" autoFocus>
+          <Button onClick={remove} color="secondary" autoFocus data-cy="remove">
             Remove
           </Button>
         </DialogActions>

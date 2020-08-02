@@ -41,4 +41,35 @@ describe('Settings', () => {
     cy.cs('delete-Test Ball 1').click();
     cy.contains('Test Ball 1').should('not.exist');
   });
+
+  it('Add new club', () => {
+    cy.cs('clubs').click();
+    cy.cs('Driver').click();
+    cy.cs('add-Driver').click();
+    cy.cs('input-name').click().type('Cypress club');
+    cy.cs('submit').click();
+
+    cy.contains('Club added!');
+    cy.contains('Cypress club');
+  });
+
+  it('Edit a club', () => {
+    cy.cs('clubs').click();
+    cy.cs('Driver').click();
+    cy.cs('edit-Test Driver 1').click();
+    cy.get('input[name=name]').clear().type('Cypress club');
+    cy.cs('submit').click();
+
+    cy.contains('Club updated!');
+    cy.contains('Cypress club');
+  });
+
+  it('Delete a club', () => {
+    cy.cs('clubs').click();
+    cy.cs('Driver').click();
+    cy.cs('delete-Test Driver 1').click();
+    cy.cs('remove').click();
+    cy.contains('Test Driver 1').should('not.exist');
+    cy.contains('No drivers found.');
+  });
 });

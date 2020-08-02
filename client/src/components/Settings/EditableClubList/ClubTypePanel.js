@@ -17,7 +17,7 @@ export default ({ clubType, clubs }) => {
   const classes = useStyles();
 
   return (
-    <ExpansionPanel>
+    <ExpansionPanel data-cy={clubType}>
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls={`${clubType}-list`}

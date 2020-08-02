@@ -32,7 +32,7 @@ export default () => (
     </Grid>
 
     <Grid item xs={12}>
-      <ExpansionPanel>
+      <ExpansionPanel data-cy="clubs">
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="club-list"
