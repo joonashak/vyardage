@@ -24,8 +24,24 @@ export default (router, knex) => {
    */
   router.put('/api/v1/club', authAdmin, async (req, res) => {
     const data = req.body;
+
+    const club = await Club.query().findById(data.id);
+    if (!club) {
+      return res.sendStatus(404);
+    }
+
+    // In case of irons, update the whole set.
+    if (club.clubType.slice(-4) === 'iron') {
+      const updatedRows = await Club.query()
+        .patch({ name: data.name })
+        .where({ name: club.name })
+        .whereRaw('RIGHT("clubType"::text, 4) = \'iron\'')
+        .returning('*');
+      return res.send(updatedRows);
+    }
+
     const updatedRows = await Club.query().update(data).where('id', data.id).returning('*');
-    res.send(updatedRows[0]);
+    return res.send(updatedRows[0]);
   });
 
   /**
