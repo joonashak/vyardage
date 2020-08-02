@@ -9,9 +9,11 @@ export default (router, knex) => {
     return clubTypes.rows.map((row) => row.clubType);
   };
 
+  const typeIsIron = (clubType) => clubType.slice(-4) === 'iron';
+
   const generateIronSet = async (name) => {
     const clubTypes = await getClubTypes();
-    const ironTypes = clubTypes.filter((type) => type.slice(-4) === 'iron');
+    const ironTypes = clubTypes.filter(typeIsIron);
     return ironTypes.map((clubType) => addId({ body: { name, clubType } }));
   };
 
@@ -26,7 +28,7 @@ export default (router, knex) => {
    * Create new club.
    */
   router.post('/api/v1/club', authAdmin, async (req, res) => {
-    const data = req.body.clubType.slice(-4) === 'iron'
+    const data = typeIsIron(req.body.clubType)
       ? await generateIronSet(req.body.name)
       : addId(req);
     res.send(await Club.query().insert(data).returning('*'));
@@ -44,7 +46,7 @@ export default (router, knex) => {
     }
 
     // In case of irons, update the whole set.
-    if (club.clubType.slice(-4) === 'iron') {
+    if (typeIsIron(club.clubType)) {
       const updatedRows = await Club.query()
         .patch({ name: data.name })
         .where({ name: club.name })
@@ -70,7 +72,7 @@ export default (router, knex) => {
 
     // In case of irons, delete the whole set.
     // This will delete no clubs if any club of the set has registered shots.
-    if (club.clubType.slice(-4) === 'iron') {
+    if (typeIsIron(club.clubType)) {
       await Club.query().where({ club: club.name }).whereRaw('RIGHT("clubType"::text, 4) = \'iron\'').del();
     } else {
       await Club.query().deleteById(id);
