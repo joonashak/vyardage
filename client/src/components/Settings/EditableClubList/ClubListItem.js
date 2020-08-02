@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import {
   ListItem, ListItemText, ListItemSecondaryAction, IconButton, ListItemIcon, makeStyles,
 } from '@material-ui/core';
-import CheckIcon from '@material-ui/icons/Check';
 import EditIcon from '@material-ui/icons/Edit';
-import CloseIcon from '@material-ui/icons/Close';
-import { useForm } from 'react-hook-form';
 import ConfirmableDeleteIconButton from '../../forms/ConfirmableDeleteIconButton';
 import useData from '../../../context/useData';
 import useNotification from '../../GlobalNotification/useNotification';
-import ControlledInput from '../../forms/ControlledInput';
+import EditableClubListItem from './EditableClubListItem';
 
 
 const useStyles = makeStyles(() => ({
@@ -20,59 +17,34 @@ const useStyles = makeStyles(() => ({
 
 export default ({ club }) => {
   const classes = useStyles();
-  const { deleteClub, upsertClub } = useData();
+  const { deleteClub } = useData();
+  const { setNotification } = useNotification();
   const [editable, setEditable] = useState(false);
   const toggleEditable = () => setEditable((prev) => !prev);
 
-  const { setNotification } = useNotification();
-  const formControl = useForm({ mode: 'onBlur' });
-  const { handleSubmit } = formControl;
-
-  const submit = async (data) => {
-    const newClub = { id: club.id, name: data.name, clubType: club.clubType };
-
+  const onRemove = async () => {
     try {
-      await upsertClub(newClub);
-      setNotification('Club updated!', 'success', true);
-      setEditable(false);
+      await deleteClub(club);
+      setNotification('Club removed!', 'success', true);
     } catch (error) {
-      setNotification(`Updating club failed: ${error.response && error.response.data.message}`, 'error');
+      setNotification(`Removing club failed: ${error.response && error.response.data.message}`, 'error');
     }
   };
 
-  return (
-    <ListItem classes={classes} onClick={editable ? null : toggleEditable}>
+  return editable ? (
+    <EditableClubListItem club={club} toggleEditable={toggleEditable} />
+  ) : (
+    <ListItem classes={classes} onClick={toggleEditable}>
       <ListItemIcon>
-        {editable ? (
-          <IconButton onClick={handleSubmit(submit)}>
-            <CheckIcon />
-          </IconButton>
-        )
-          : (
-            <IconButton>
-              <EditIcon />
-            </IconButton>
-          )}
+        <IconButton>
+          <EditIcon />
+        </IconButton>
       </ListItemIcon>
-      <ListItemText>{editable ? (
-        <ControlledInput
-          formControl={formControl}
-          name="name"
-          label="Club Name"
-          rules={{ required: 'Club name is required.' }}
-          id={`name-${club.id}`}
-          defaultValue={club.name}
-        />
-      ) : club.name}
+      <ListItemText>
+        {club.name}
       </ListItemText>
       <ListItemSecondaryAction>
-        {editable
-          ? (
-            <IconButton onClick={toggleEditable}>
-              <CloseIcon color="secondary" />
-            </IconButton>
-          )
-          : <ConfirmableDeleteIconButton name={club.name} onRemove={() => deleteClub(club)} />}
+        <ConfirmableDeleteIconButton name={club.name} onRemove={onRemove} />
       </ListItemSecondaryAction>
     </ListItem>
   );
