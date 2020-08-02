@@ -4,6 +4,17 @@ import addId from '../utils/addId';
 
 
 export default (router, knex) => {
+  const getClubTypes = async () => {
+    const clubTypes = await knex.raw('SELECT unnest(enum_range(NULL::"CLUB_TYPE")) AS "clubType"');
+    return clubTypes.rows.map((row) => row.clubType);
+  };
+
+  const generateIronSet = async (name) => {
+    const clubTypes = await getClubTypes();
+    const ironTypes = clubTypes.filter((type) => type.slice(-4) === 'iron');
+    return ironTypes.map((clubType) => addId({ body: { name, clubType } }));
+  };
+
   /**
    * Get all clubs.
    */
@@ -15,7 +26,9 @@ export default (router, knex) => {
    * Create new club.
    */
   router.post('/api/v1/club', authAdmin, async (req, res) => {
-    const data = addId(req);
+    const data = req.body.clubType.slice(-4) === 'iron'
+      ? await generateIronSet(req.body.name)
+      : addId(req);
     res.send(await Club.query().insert(data).returning('*'));
   });
 
@@ -70,7 +83,6 @@ export default (router, knex) => {
    * Get all possible club types (i.e., CLUB_TYPE enumeration).
    */
   router.get('/api/v1/clubTypes', auth, async (req, res) => {
-    const clubTypes = await knex.raw('SELECT unnest(enum_range(NULL::"CLUB_TYPE")) AS "clubType"');
-    res.send(clubTypes.rows.map((row) => row.clubType));
+    res.send(await getClubTypes());
   });
 };
