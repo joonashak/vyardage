@@ -51,7 +51,7 @@ module.exports = [
   },
   {
     id: '6ab76577-6fd6-4e8b-ac5b-27b81cf81d47',
-    name: 'Test Pitching wedge 1',
+    name: 'Test Iron Set 1',
     clubType: 'Pitching wedge',
   },
   {

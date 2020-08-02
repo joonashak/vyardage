@@ -9,7 +9,7 @@ export default () => {
 
   // Show different length irons as one item.
   const compactClubTypes = [...new Set(clubTypes.map(
-    (type) => (type.slice(-4) === 'iron' ? 'Iron set' : type),
+    (type) => (type.slice(-4) === 'iron' || type === 'Pitching wedge' ? 'Iron set' : type),
   ))];
 
   const clubsByType = compactClubTypes.map(
