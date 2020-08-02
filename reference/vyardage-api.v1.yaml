@@ -543,6 +543,83 @@ paths:
                     - Gap wedge
                     - Sand wedge
                     - Lob wedge
+  /api/v1/shotsByClub:
+    get:
+      summary: Shots by Club
+      tags:
+        - Features
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shot'
+              examples:
+                Example:
+                  value:
+                    - id: f37e9e79-950a-4e7b-abe7-c7b453478cda
+                      userId: 7ab051f4-e1e5-4bb5-b8ea-e8f0825d5580
+                      clubId: 0079daba-33dc-4998-9a84-ab0ccabed842
+                      ballId: 2f2725db-aa26-420b-9f92-540414c94070
+                      lieType: Tee
+                      liePct: 1
+                      windDir: 180
+                      windSpeed: 8
+                      elevation: -5
+                      spin: -1
+                      power: 1
+                      actCarry: 300
+                      predCarry: null
+                      createdAt: '2020-08-02T21:40:21.464Z'
+                      club:
+                        id: 0079daba-33dc-4998-9a84-ab0ccabed842
+                        name: Test Driver 1
+                        clubType: Driver
+                      ball:
+                        id: 2f2725db-aa26-420b-9f92-540414c94070
+                        name: Test Ball 1
+                        distance: 5.2
+                        spin: 3.4
+                    - id: 0cb7ac62-05c1-4851-acbe-262cd8648ac3
+                      userId: 7ab051f4-e1e5-4bb5-b8ea-e8f0825d5580
+                      clubId: 0079daba-33dc-4998-9a84-ab0ccabed842
+                      ballId: 2f2725db-aa26-420b-9f92-540414c94070
+                      lieType: Tee
+                      liePct: 1
+                      windDir: 180
+                      windSpeed: 8
+                      elevation: -5
+                      spin: -1
+                      power: 1
+                      actCarry: 290
+                      predCarry: null
+                      createdAt: '2020-08-02T21:42:31.669Z'
+                      club:
+                        id: 0079daba-33dc-4998-9a84-ab0ccabed842
+                        name: Test Driver 1
+                        clubType: Driver
+                      ball:
+                        id: 2f2725db-aa26-420b-9f92-540414c94070
+                        name: Test Ball 1
+                        distance: 5.2
+                        spin: 3.4
+      operationId: get-api-v1-shotsByClub
+      description: "Get user's shots by club."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  description: Club ID to search with.
+              required:
+                - id
 components:
   schemas:
     Ball:
@@ -612,3 +689,85 @@ components:
           id: 46b17315-e9e3-411f-8a07-b5edd6e0d575
           name: TaylorMade M1 9.0° (L74)
           clubType: Driver
+    Shot:
+      title: Shot
+      type: object
+      x-examples:
+        Example:
+          id: f37e9e79-950a-4e7b-abe7-c7b453478cda
+          userId: 7ab051f4-e1e5-4bb5-b8ea-e8f0825d5580
+          clubId: 0079daba-33dc-4998-9a84-ab0ccabed842
+          ballId: 2f2725db-aa26-420b-9f92-540414c94070
+          lieType: Tee
+          liePct: 1
+          windDir: 180
+          windSpeed: 8
+          elevation: -5
+          spin: -1
+          power: 1
+          actCarry: 300
+          predCarry: null
+          createdAt: '2020-08-02T21:40:21.464Z'
+          club:
+            id: 0079daba-33dc-4998-9a84-ab0ccabed842
+            name: Test Driver 1
+            clubType: Driver
+          ball:
+            id: 2f2725db-aa26-420b-9f92-540414c94070
+            name: Test Ball 1
+            distance: 5.2
+            spin: 3.4
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        clubId:
+          type: string
+          format: uuid
+        ballId:
+          type: string
+          format: uuid
+        lieType:
+          type: number
+        liePct:
+          type: number
+        windDir:
+          type: integer
+        windSpeed:
+          type: integer
+        elevation:
+          type: integer
+        spin:
+          type: number
+        power:
+          type: number
+        actCarry:
+          type: integer
+        predCarry:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        club:
+          $ref: '#/components/schemas/Club'
+        ball:
+          $ref: '#/components/schemas/Ball'
+      required:
+        - id
+        - userId
+        - clubId
+        - ballId
+        - lieType
+        - liePct
+        - windDir
+        - windSpeed
+        - elevation
+        - spin
+        - power
+        - actCarry
+        - createdAt
+        - club
+        - ball

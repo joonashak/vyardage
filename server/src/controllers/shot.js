@@ -13,4 +13,12 @@ export default (router) => {
     delete data.createdAt; // Let db use it's default now().
     res.send(await Shot.query().insert(data).returning('*'));
   });
+
+  /**
+   * Get user's shots by club.
+   */
+  router.get('/api/v1/shotsByClub', auth, async (req, res) => {
+    const { id } = req.body;
+    res.send(await Shot.query().withGraphJoined('[club, ball]').where('club.id', id));
+  });
 };
