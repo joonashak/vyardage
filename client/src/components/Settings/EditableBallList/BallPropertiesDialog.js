@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import {
-  Grid, IconButton, Dialog, DialogTitle, DialogContent,
+  Grid, IconButton, Dialog, DialogTitle, DialogContent, makeStyles,
 } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
@@ -9,6 +9,12 @@ import ControlledInput from '../../forms/ControlledInput';
 import useNotification from '../../GlobalNotification/useNotification';
 import useData from '../../../context/useData';
 
+
+const useStyles = makeStyles(() => ({
+  root: {
+    paddingBottom: '24px',
+  },
+}));
 
 export default ({ ball, open, onClose }) => {
   // FIXME: Refactor this shit.
@@ -18,6 +24,7 @@ export default ({ ball, open, onClose }) => {
     id: '', name: '', distance: '', spin: '',
   };
 
+  const classes = useStyles();
   const { upsertBall } = useData();
   const { setNotification } = useNotification();
   const formControl = useForm({ mode: 'onBlur' });
@@ -50,7 +57,7 @@ export default ({ ball, open, onClose }) => {
       <DialogTitle>
         {ball ? 'Edit Ball' : 'New Ball'}
       </DialogTitle>
-      <DialogContent>
+      <DialogContent classes={classes}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
             <ControlledInput

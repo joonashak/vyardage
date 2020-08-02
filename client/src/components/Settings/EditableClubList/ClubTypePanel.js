@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, List, makeStyles, Button, Grid,
+  Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, List, makeStyles, Grid,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ClubListItem from './ClubListItem';
+import AddClubDialog from './AddClubDialog';
 
 
 const useStyles = makeStyles(() => ({
@@ -39,17 +39,7 @@ export default ({ clubType, clubs }) => {
           </Grid>
 
           <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              size="large"
-              startIcon={<AddCircleIcon />}
-              fullWidth
-              data-cy="add-club-button"
-            >
-              {`Add ${clubType}`}
-            </Button>
+            <AddClubDialog clubType={clubType} />
           </Grid>
         </Grid>
       </ExpansionPanelDetails>
