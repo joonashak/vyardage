@@ -2,9 +2,7 @@
 
 describe('Shot Entry', () => {
   beforeEach(() => {
-    cy.createInitialUser('admin', '1234');
-    cy.login('admin', '1234');
-    cy.seed();
+    cy.init();
   });
 
   // Happy path.

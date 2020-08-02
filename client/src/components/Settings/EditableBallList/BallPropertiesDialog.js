@@ -101,7 +101,7 @@ export default ({ ball, open, onClose }) => {
           </Grid>
           <Grid container justify="flex-end" spacing={3}>
             <Grid item>
-              <IconButton onClick={handleSubmit(submit)}>
+              <IconButton onClick={handleSubmit(submit)} data-cy="submit">
                 <CheckIcon />
               </IconButton>
               <IconButton color="secondary" onClick={onClose}>

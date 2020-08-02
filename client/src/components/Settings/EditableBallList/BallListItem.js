@@ -7,7 +7,7 @@ import BallDetails from './BallDetails';
 
 
 export default ({ ball }) => (
-  <ExpansionPanel>
+  <ExpansionPanel data-cy={ball.name}>
     <ExpansionPanelSummary
       expandIcon={<ExpandMoreIcon />}
       aria-controls="ball-list"

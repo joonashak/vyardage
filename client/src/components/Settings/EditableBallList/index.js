@@ -16,7 +16,7 @@ export default () => {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <List style={{ width: '100%' }}>
-          {sortedBalls().map((ball) => <BallListItem ball={ball} key={`ball-properties-${ball.id}`} />)}
+          {sortedBalls().map((ball) => <BallListItem ball={ball} key={`ball-properties-${ball.id}`} data-cy={ball.name} />)}
         </List>
       </Grid>
       <Grid item xs={12}>

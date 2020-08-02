@@ -16,7 +16,7 @@ export default () => (
     </Grid>
 
     <Grid item xs={12}>
-      <ExpansionPanel>
+      <ExpansionPanel data-cy="balls">
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="ball-list"
@@ -32,7 +32,7 @@ export default () => (
     </Grid>
 
     <Grid item xs={12}>
-      <ExpansionPanel expanded>
+      <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="club-list"

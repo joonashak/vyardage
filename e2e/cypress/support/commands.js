@@ -21,6 +21,12 @@ Cypress.Commands.add('login', (username, password) => {
 
 Cypress.Commands.add('seed', () => cy.request(`${apiUrl}/seed`));
 
+Cypress.Commands.add('init', () => {
+  cy.createInitialUser('admin', '1234');
+  cy.login('admin', '1234');
+  cy.seed();
+})
+
 /**
  * Shorthand for using "Cypress Selectors" (CS), i.e., `data-cy` attributes.
  */

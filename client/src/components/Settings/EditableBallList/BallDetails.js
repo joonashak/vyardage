@@ -46,10 +46,10 @@ export default ({ ball }) => {
       </Grid>
       <Grid container justify="flex-end">
         <Grid item>
-          <IconButton onClick={() => setEditing(true)}>
+          <IconButton onClick={() => setEditing(true)} data-cy={`edit-${ball.name}`}>
             <EditIcon />
           </IconButton>
-          <IconButton color="secondary" onClick={remove}>
+          <IconButton color="secondary" onClick={remove} data-cy={`delete-${ball.name}`}>
             <DeleteIcon />
           </IconButton>
         </Grid>

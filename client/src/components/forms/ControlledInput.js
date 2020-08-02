@@ -19,6 +19,7 @@ export default ({
       defaultValue=""
       variant="filled"
       fullWidth
+      data-cy={`input-${name}`}
       {...rest}
     >
       {children}

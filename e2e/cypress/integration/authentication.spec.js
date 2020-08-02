@@ -12,8 +12,6 @@ describe('Authentication', () => {
   const password = '1234';
 
   before(() => {
-    // Don't fail on non-200 status codes to enable repetitive test running in development.
-    // This route gets implicitly tested later on, anyway.
     cy.createInitialUser(username, password);
   });
 
