@@ -20,3 +20,10 @@ Cypress.Commands.add('login', (username, password) => {
 });
 
 Cypress.Commands.add('seed', () => cy.request(`${apiUrl}/seed`));
+
+/**
+ * Shorthand for using "Cypress Selectors" (CS), i.e., `data-cy` attributes.
+ */
+Cypress.Commands.add('cs', (name) => {
+  return cy.get(`[data-cy='${name}']`);
+});

@@ -11,35 +11,35 @@ describe('Shot Entry', () => {
   it('User can enter a shot', () => {
     // Select equipment.
     cy.visit('/play');
-    cy.get('[data-cy="select-ball"]').click();
+    cy.cs('select-ball').click();
     cy.contains('Test Ball 1').click();
-    cy.get('[data-cy="select-club-Driver"]').click();
+    cy.cs('select-club-Driver').click();
     cy.get('#select-club-Driver-option-0').click();
 
     // Close equipment selection.
-    cy.get('[data-cy="close-eq-selection"]').click();
-    cy.get('[data-cy="select-ball"]').should('not.be.visible');
+    cy.cs('close-eq-selection').click();
+    cy.cs('select-ball').should('not.be.visible');
 
     // Enter shot details.
     cy.get('#windDir').type('180');
     cy.get('#windSpeed').type('5');
     cy.get('#elevation').type('-10');
     cy.get('#clubId').click();
-    cy.get('[data-cy="club-option-Driver"]').click();
+    cy.cs('club-option-Driver').click();
     cy.get('#spin').type('0');
     cy.get('#power').type('100');
     cy.get('#actCarry').type('310');
 
-    cy.get('[data-cy="save-shot-button"]').click();
+    cy.cs('save-shot-button').click();
     cy.contains('Shot recorded!');
   });
 
   it('Every field shows a validation error on bad data', () => {
     cy.visit('/play');
     cy.get('#liePct').clear();
-    cy.get('[data-cy="save-shot-button"]').click();
+    cy.cs('save-shot-button').click();
 
-    cy.get('[data-cy="select-equipment"]').should('contain', 'Not Completed');
+    cy.cs('select-equipment').should('contain', 'Not Completed');
 
     cy.contains('Lie % is required.');
     cy.contains('Wind Direction is required.');
@@ -54,13 +54,13 @@ describe('Shot Entry', () => {
   it('Shortcut buttons are working', () => {
     cy.visit('/play');
 
-    cy.get('[data-cy="spin-button-100"]').click();
+    cy.cs('spin-button-100').click();
     cy.get('#spin').should('have.value', '-100');
 
-    cy.get('[data-cy="spin-button-0"]').click();
+    cy.cs('spin-button-0').click();
     cy.get('#spin').should('have.value', '0');
 
-    cy.get('[data-cy="power-button-100"]').click();
+    cy.cs('power-button-100').click();
     cy.get('#power').should('have.value', '100');
   });
 });
