@@ -357,7 +357,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Club'
       operationId: post-api-v1-club
-      description: '`id` is optional and will be generated if not received.'
+      description: |-
+        `id` is optional and will be generated if not received.
+
+        *For irons, a full set (3i-Pw) is created.*
       requestBody:
         content:
           application/json:
@@ -377,6 +380,8 @@ paths:
         Updates the club specified by the `id` field in payload. The club's ID cannot be changed.
 
         Returns the updated object.
+
+        *For irons, the full set is updated on the name and club types cannot be changed. The whole updated array is returned.*
       requestBody:
         content:
           application/json:
@@ -390,7 +395,10 @@ paths:
           description: OK
         '404':
           description: Not Found
-      description: Delete the club specified by the `id` field in payload.
+      description: |-
+        Delete the club specified by the `id` field in payload.
+
+        *If `id` specifies an iron, the whole set is deleted if none of the clubs are related with a `Shot`.*
       requestBody:
         content:
           application/json:
