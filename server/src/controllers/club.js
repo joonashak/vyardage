@@ -73,7 +73,7 @@ export default (router, knex) => {
     // In case of irons, delete the whole set.
     // This will delete no clubs if any club of the set has registered shots.
     if (typeIsIron(club.clubType)) {
-      await Club.query().where({ club: club.name }).whereRaw('RIGHT("clubType"::text, 4) = \'iron\'').del();
+      await Club.query().where({ name: club.name }).whereRaw('RIGHT("clubType"::text, 4) = \'iron\'').del();
     } else {
       await Club.query().deleteById(id);
     }

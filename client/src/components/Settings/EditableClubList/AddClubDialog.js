@@ -27,7 +27,8 @@ export default ({ clubType }) => {
 
   const submit = async (data) => {
     const { name } = data;
-    const newClub = { name, clubType };
+    const acualClubType = clubType === 'Iron set' ? '3-iron' : clubType;
+    const newClub = { name, clubType: acualClubType };
 
     try {
       await upsertClub(newClub);
