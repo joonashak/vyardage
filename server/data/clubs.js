@@ -16,37 +16,37 @@ module.exports = [
   },
   {
     id: '71d10e11-d9d4-4cc1-90e6-2a6626f15138',
-    name: 'Test 3-iron 1',
+    name: 'Test Iron Set 1',
     clubType: '3-iron',
   },
   {
     id: '8ccaeee8-1e49-4529-ac14-6cfb7af76c01',
-    name: 'Test 4-iron 1',
+    name: 'Test Iron Set 1',
     clubType: '4-iron',
   },
   {
     id: 'b6dcd8ec-a0e6-4e48-91a3-573c7340c82d',
-    name: 'Test 5-iron 1',
+    name: 'Test Iron Set 1',
     clubType: '5-iron',
   },
   {
     id: 'cc5acc0f-154a-4167-8451-748cae35886a',
-    name: 'Test 6-iron 1',
+    name: 'Test Iron Set 1',
     clubType: '6-iron',
   },
   {
     id: '42c9e236-b5d5-4932-a153-348f41c54791',
-    name: 'Test 7-iron 1',
+    name: 'Test Iron Set 1',
     clubType: '7-iron',
   },
   {
     id: 'd1ce1952-2933-4192-81f7-932678075038',
-    name: 'Test 8-iron 1',
+    name: 'Test Iron Set 1',
     clubType: '8-iron',
   },
   {
     id: '2172c761-b0dc-4b28-b635-3374e5ea0575',
-    name: 'Test 9-iron 1',
+    name: 'Test Iron Set 1',
     clubType: '9-iron',
   },
   {

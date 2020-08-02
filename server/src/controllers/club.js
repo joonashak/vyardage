@@ -33,8 +33,21 @@ export default (router, knex) => {
    */
   router.delete('/api/v1/club', authAdmin, async (req, res) => {
     const { id } = req.body;
-    const rows = await Club.query().deleteById(id);
-    res.sendStatus(rows === 0 ? 404 : 200);
+
+    const club = await Club.query().findById(id);
+    if (!club) {
+      return res.sendStatus(404);
+    }
+
+    // In case of irons, delete the whole set.
+    // This will delete no clubs if any club of the set has registered shots.
+    if (club.clubType.slice(-4) === 'iron') {
+      await Club.query().where({ club: club.name }).whereRaw('RIGHT("clubType"::text, 4) = \'iron\'').del();
+    } else {
+      await Club.query().deleteById(id);
+    }
+
+    return res.sendStatus(200);
   });
 
   /**
