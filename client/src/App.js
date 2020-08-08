@@ -10,6 +10,7 @@ import Logout from './components/authentication/Logout';
 import GameView from './components/views/GameView';
 import SettingsView from './components/views/SettingsView';
 import CombinedContext from './CombinedContext';
+import BrowseView from './components/views/BrowseView';
 
 
 export default () => {
@@ -33,6 +34,7 @@ export default () => {
             <Route path="/logout" exact component={Logout} />
             <Route path="/play" exact component={GameView} />
             <Route path="/settings" exact component={SettingsView} />
+            <Route path="/browse" exact component={BrowseView} />
             <Route path="/" component={HomeView} />
           </Switch>
 

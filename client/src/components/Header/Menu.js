@@ -7,6 +7,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import GolfCourseIcon from '@material-ui/icons/GolfCourse';
 import LockIcon from '@material-ui/icons/Lock';
 import SettingsIcon from '@material-ui/icons/Settings';
+import ViewListIcon from '@material-ui/icons/ViewList';
 import MenuItem from './MenuItem';
 
 
@@ -30,6 +31,9 @@ export default () => {
           <Divider />
           <List>
             <MenuItem text="Play Golf" icon={<GolfCourseIcon />} to="/play" />
+          </List>
+          <List>
+            <MenuItem text="Browse Shots" icon={<ViewListIcon />} to="/browse" />
           </List>
           <List>
             <MenuItem text="Settings" icon={<SettingsIcon />} to="/settings" />

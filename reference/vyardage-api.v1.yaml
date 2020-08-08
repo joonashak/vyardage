@@ -608,18 +608,14 @@ paths:
                         spin: 3.4
       operationId: get-api-v1-shotsByClub
       description: "Get user's shots by club."
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                  description: Club ID to search with.
-              required:
-                - id
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: id
+          description: Club ID
+          required: true
 components:
   schemas:
     Ball:
