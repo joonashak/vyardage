@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ClubSelection from './ClubSelection';
 
 import { getShotsByClub } from '../../services/shotService';
+import ShotTable from './ShotTable';
 
 
 export default () => {
@@ -15,6 +16,9 @@ export default () => {
   };
 
   return (
-    <ClubSelection selectedClub={selectedClub} setSelectedClub={changeClub} />
+    <>
+      <ClubSelection selectedClub={selectedClub} setSelectedClub={changeClub} />
+      <ShotTable shots={shots} />
+    </>
   );
 };
