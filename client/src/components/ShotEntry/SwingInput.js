@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Button } from '@material-ui/core';
-import NumberField from './NumberField';
+import NumberField from '../forms/NumberField';
 
 
 export default ({ formControl }) => (

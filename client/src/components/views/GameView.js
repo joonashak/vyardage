@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ViewWrapper from './ViewWrapper';
-import RegisterShot from '../forms/RegisterShot';
 import useData from '../../context/useData';
+import ShotEntry from '../ShotEntry';
 
 
 export default () => {
@@ -13,7 +13,7 @@ export default () => {
 
   return (
     <ViewWrapper loadingMessage="Loading game data...">
-      <RegisterShot />
+      <ShotEntry />
     </ViewWrapper>
   );
 };

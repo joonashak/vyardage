@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import { save as saveShot } from '../../services/shotService';
-import ControlledInput from './ControlledInput';
+import ControlledInput from '../forms/ControlledInput';
 import EnvironmentInput from './EnvironmentInput';
 import SwingInput from './SwingInput';
 import SelectEquipment from './SelectEquipment';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, MenuItem } from '@material-ui/core';
-import ControlledInput from './ControlledInput';
-import NumberField from './NumberField';
+import ControlledInput from '../forms/ControlledInput';
+import NumberField from '../forms/NumberField';
 
 
 export default ({ formControl }) => {
